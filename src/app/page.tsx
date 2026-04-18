@@ -294,7 +294,7 @@ export default function LandingPage() {
                 <Landmark className="w-6 h-6 text-[var(--accent-strong)] group-hover:text-white transition-colors duration-300" />
               </div>
               <span className="font-bold text-xl md:text-2xl text-[var(--foreground)] tracking-tight">
-                {lang === "en" ? "Gaurang" : "गौरांग"} <span className="text-[var(--accent)]">Dham</span>
+                {lang === "en" ? "Saṁskāra" : "संस्कार"} <span className="text-[var(--accent)]">Gurukula</span>
               </span>
             </a>
 
@@ -602,11 +602,11 @@ export default function LandingPage() {
           <div className="flex items-center gap-2 mb-6 opacity-80">
             <Landmark className="w-6 h-6 text-[var(--accent)]" />
             <span className="font-bold text-xl text-[var(--foreground)] tracking-tight">
-              Gaurang Dham
+             Saṁskāra Gurukula
             </span>
           </div>
           <p className="text-[var(--ink-soft)] font-medium mb-6">
-            &copy; {new Date().getFullYear()} Gaurang Dham. All rights reserved.
+            &copy; {new Date().getFullYear()} Saṁskāra Gurukula. All rights reserved.
           </p>
           <div className="flex gap-4">
             <a href="#" className="chip-link text-xs">Privacy Policy</a>
