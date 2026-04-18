@@ -1,0 +1,685 @@
+import {
+  BookOpen,
+  Calendar,
+  CheckCircle,
+  Clock,
+  Compass,
+  Heart,
+  Lightbulb,
+  MapPin,
+  Phone,
+  Shield,
+  Star,
+  Target,
+  Sparkles,
+  ArrowRight,
+  User,
+  Users
+} from "lucide-react";
+import Image from "next/image";
+
+type ProgramName = {
+  name: string;
+  transliteration?: string;
+  meaning: string;
+};
+
+type ProgramModule = {
+  title: string;
+  focus: string[];
+};
+
+type Mentor = {
+  name: string;
+  qualification: string[];
+  role: string;
+};
+
+const programNames: ProgramName[] = [
+  {
+    name: "संस्कार गुरुकुल",
+    transliteration: "Saṁskāra Gurukula",
+    meaning: "A learning space rooted in values",
+  },
+  {
+    name: "आत्मोन्नति गुरुकुल",
+    transliteration: "Ātmonnati Gurukula",
+    meaning: "Self-elevation and inner growth",
+  },
+  {
+    name: "Gyanodaya",
+    transliteration: "Rise of Knowledge",
+    meaning: "Awakening through learning",
+  },
+  {
+    name: "Shiksha Niketan",
+    transliteration: "Abode of Education",
+    meaning: "A home for disciplined learning",
+  },
+  {
+    name: "Bramhavidya",
+    transliteration: "Supreme Knowledge",
+    meaning: "Higher wisdom for life",
+  },
+  {
+    name: "Medhavardhan",
+    transliteration: "Developing Intelligence",
+    meaning: "Strengthening intellect with values",
+  },
+  {
+    name: "चरित्र गुरुकुल",
+    transliteration: "Charitra Gurukula",
+    meaning: "Focused on character building",
+  },
+  {
+    name: "विवेक गुरुकुल",
+    transliteration: "Viveka Gurukula",
+    meaning: "Wisdom and right judgment",
+  },
+  {
+    name: "उत्कर्ष गुरुकुल",
+    transliteration: "Utkarṣa Gurukula",
+    meaning: "Excellence and upliftment",
+  },
+  {
+    name: "संवर्धन गुरुकुल",
+    transliteration: "Sanvardhana Gurukula",
+    meaning: "Nurturing and holistic development",
+  },
+];
+
+const SanskritTaglines = [
+  {
+    line: "संस्कारात् भवति श्रेष्ठता",
+    translation: "Greatness comes from values",
+  },
+  {
+    line: "आत्मोन्नतिः परं लक्ष्यं",
+    translation: "Self-elevation is the highest goal",
+  },
+  {
+    line: "विद्यया अमृतमश्नुते",
+    translation: "Through knowledge, one attains immortality",
+  },
+  {
+    line: "विद्या ददाति विनयम्",
+    translation: "Knowledge gives humility",
+  },
+  {
+    line: "धर्मेण जीवनम् श्रेष्ठम्",
+    translation: "Life becomes noble through dharma",
+  },
+  {
+    line: "ज्ञानं परमं बलम्",
+    translation: "Knowledge is the greatest strength",
+  },
+  {
+    line: "सा विद्या या विमुक्तये",
+    translation: "True education liberates",
+  },
+  {
+    line: "शिक्षा संस्कारस्य मूलम्",
+    translation: "Education is the root of values",
+  },
+  {
+    line: "विवेकः जीवनस्य दीपः",
+    translation: "Wisdom is the light of life",
+  },
+];
+
+const modules: ProgramModule[] = [
+  {
+    title: "Module 1: Foundation of Character",
+    focus: [
+      "Who am I? (Body vs Soul)",
+      "Discipline and good habits",
+      "Respect and responsibility",
+      "Power of mind",
+      "Truthfulness and integrity",
+    ],
+  },
+  {
+    title: "Module 2: Personality Development",
+    focus: [
+      "Communication skills",
+      "Body language",
+      "Leadership qualities",
+      "Decision making",
+    ],
+  },
+  {
+    title: "Module 3: Emotional and Moral Strength",
+    focus: [
+      "Anger and stress management",
+      "Handling peer pressure",
+      "Social media awareness",
+      "Compassion and service",
+      "Understanding relationships",
+    ],
+  },
+  {
+    title: "Module 4: Vision and Life Purpose",
+    focus: [
+      "Career and goal setting",
+      "Value-driven growth",
+      "Importance of good association",
+      "Spiritual lifestyle",
+      "Commitment and civic responsibility towards nation",
+    ],
+  },
+];
+
+const studentGains = [
+  "Strong values and discipline",
+  "Confidence in speaking",
+  "Better focus and decision making",
+  "Emotional balance",
+  "Clear vision for future",
+  "Spiritual development",
+];
+
+const specialFeatures = [
+  "Interactive sessions and group discussions",
+  "Outdoor visits, trips, and games",
+  "Yoga, meditation, and shloka learning",
+  "Competitions and presentations",
+  "Parent interaction programs",
+  "Certificate and awards",
+];
+
+const mentors: Mentor[] = [
+  {
+    name: "Shrija Akhade",
+    qualification: ["B.Com. Graduate", "CA Intermediate (Group 1)"],
+    role: "Senior Manager (Accounts and Finance)",
+  },
+  {
+    name: "Shraddha Sarwade",
+    qualification: ["B.Com. Graduate", "Chartered Accountant (CA)"],
+    role: "Senior Head (Accounts and Finance), Capricorn Group",
+  },
+  {
+    name: "Vaibhav Bodkhe",
+    qualification: ["B.E. (Computer Science)"],
+    role: "Data Engineer, Accenture",
+  },
+  {
+    name: "Dr. Himanshu Kamble",
+    qualification: ["M.B.B.S."],
+    role: "Medical Officer, District Hospital, Pune",
+  },
+  {
+    name: "Manasi Bhor",
+    qualification: ["B.Com. Graduate", "MBA - ITBM (Symbiosis)"],
+    role: "Associate Consultant, Cybersecurity, Infosys Ltd.",
+  },
+];
+
+const scheduleTime = "Add Time";
+const contactNumber = "Add Number";
+
+const moduleSurfaceStyles = [
+  "border-[#ebd2b2] bg-[#fff6eb]",
+  "border-[#b8ddc7] bg-[#effaf3]",
+  "border-[#b9d3ea] bg-[#eef7ff]",
+  "border-[#d9c6eb] bg-[#f8f0ff]",
+];
+
+function getInitials(name: string) {
+  return name
+    .replace("Dr. ", "")
+    .split(" ")
+    .map((value) => value.charAt(0))
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+}
+
+export default function Home() {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "EducationalOrganization",
+        name: "Gaurang Dham",
+        department: "Atmonnati Gurukula",
+        description:
+          "A value-based Sunday School for students of standards 8th, 9th, and 10th focused on character, confidence, and spiritual growth.",
+      },
+      {
+        "@type": "Course",
+        name: "Sunday School for Youth",
+        description:
+          "One-year program with four modules: character foundation, personality development, emotional strength, and life purpose.",
+        provider: {
+          "@type": "Organization",
+          name: "Gaurang Dham",
+        },
+        courseMode: "In-person",
+        timeRequired: "P1Y",
+      },
+    ],
+  };
+
+  const moduleIcons = [Shield, Users, Heart, Compass];
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <main className="relative isolate min-h-[100dvh] overflow-x-clip pb-24 font-sans">
+        {/* Spacious Background */}
+        <div className="pointer-events-none fixed inset-0 -z-10">
+          <div className="absolute -left-40 top-0 h-[500px] w-[500px] rounded-full bg-[radial-gradient(circle,_rgba(210,117,35,0.08),_rgba(210,117,35,0))]" />
+          <div className="absolute right-0 top-[20%] h-[600px] w-[600px] rounded-full bg-[radial-gradient(circle,_rgba(46,86,59,0.06),_rgba(46,86,59,0))]" />
+          <div className="absolute left-[10%] bottom-0 h-[500px] w-[500px] rounded-full bg-[radial-gradient(circle,_rgba(20,77,122,0.05),_rgba(20,77,122,0))]" />
+        </div>
+
+        <header className="mx-auto w-full max-w-[1400px] px-6 pt-8 sm:px-10 lg:px-12 z-50 relative">
+          <div className="glass-panel animate-rise flex flex-col md:flex-row items-center justify-between gap-6 rounded-full border px-8 py-5 shadow-sm">
+            <div className="flex items-center gap-4">
+              <div className="h-12 w-12 rounded-full border-2 border-accent/20 bg-accent/10 flex items-center justify-center">
+                 <BookOpen className="h-6 w-6 text-accent-strong" />
+              </div>
+              <div>
+                <p className="text-[0.65rem] font-bold uppercase tracking-[0.3em] text-accent-strong">
+                  Gaurang Dham Presents
+                </p>
+                <p className="mt-0.5 text-lg font-bold text-foreground">
+                  Sunday School for Youth
+                </p>
+              </div>
+            </div>
+            <nav className="flex flex-wrap items-center justify-center gap-6 text-sm text-ink-soft">
+              <a className="hover:text-accent-strong transition-colors font-semibold tracking-wide" href="#about">Identity</a>
+              <a className="hover:text-accent-strong transition-colors font-semibold tracking-wide" href="#modules">Curriculum</a>
+              <a className="hover:text-accent-strong transition-colors font-semibold tracking-wide" href="#mentors">Mentors</a>
+              <a className="primary-button" href="#register">Register Now</a>
+            </nav>
+          </div>
+        </header>
+
+        <section className="mx-auto flex flex-col w-full max-w-[1250px] animate-rise gap-10 px-6 pt-8 pb-12 sm:px-10 lg:flex-row lg:pt-10 lg:pb-20 lg:px-12 [animation-delay:120ms] items-center">
+          <div className="space-y-6 lg:w-[55%]">
+            <div className="inline-flex items-center gap-2 rounded-full border border-accent/20 bg-surface px-4 py-2 shadow-sm">
+              <Sparkles className="h-3.5 w-3.5 text-accent-strong" />
+              <p className="text-[0.7rem] font-bold uppercase tracking-[0.15em] text-accent-strong">
+                For Students of Std. 8th, 9th and 10th
+              </p>
+            </div>
+            <h1 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:text-[4rem] leading-[1.1]">
+              Building <span className="text-accent-strong relative whitespace-nowrap">Character<span className="absolute bottom-1.5 left-0 w-[calc(100%-0.4em)] h-2.5 bg-accent/20 -z-10 rounded-full"></span>,</span>
+              <br className="hidden sm:block" /> Confidence and Culture
+            </h1>
+            <p className="max-w-[36rem] text-lg leading-relaxed text-ink-soft font-medium">
+              In today&apos;s fast-changing world, students face stress, distractions,
+              and confusion about life goals. This one-year Sunday School provides
+              value-based guidance through structured learning, practical life
+              skills, and spiritual wisdom.
+            </p>
+
+            <div className="flex flex-wrap gap-4 pt-2">
+              <a className="primary-button text-base px-6 py-3" href="#register">
+                Registration Open <ArrowRight className="ml-2 h-4 w-4" />
+              </a>
+              <a className="secondary-button text-base px-6 py-3 bg-surface" href="#modules">
+                View Curriculum
+              </a>
+            </div>
+
+            <div className="flex gap-8 pt-6 border-t border-border/50">
+               <div>
+                  <p className="text-[0.7rem] font-bold uppercase tracking-[0.15em] text-ink-soft">Meaning</p>
+                  <p className="mt-1 text-lg font-bold text-foreground">Self-elevate</p>
+               </div>
+               <div className="w-px bg-border/50"></div>
+               <div>
+                  <p className="text-[0.7rem] font-bold uppercase tracking-[0.15em] text-ink-soft">Core Motto</p>
+                  <p className="mt-1 text-xl font-semibold text-accent-strong font-script">संस्कारात् भवति श्रेष्ठता</p>
+               </div>
+            </div>
+          </div>
+
+          <aside className="glass-panel w-full rounded-[2rem] border p-6 sm:p-8 lg:w-[45%] shadow-xl relative overflow-hidden">
+             <div className="absolute top-0 right-0 w-full h-full opacity-10">
+               {/* <Calendar className="h-full w-full opacity-20" /> */}
+             </div>
+             
+
+             <div className="w-full h-40 md:h-48 mb-6 overflow-hidden rounded-2xl relative shadow-md">
+                <Image 
+                   src="/hero.png" 
+                   alt="Sunday School Students" 
+                   fill 
+                   className="object-cover" 
+                />
+             </div>
+             
+            <div className="flex items-center gap-4 mb-6 relative">
+              <div className="p-3 bg-accent/10 rounded-2xl text-accent-strong">
+                <Clock className="h-6 w-6" />
+              </div>
+              <h2 className="text-2xl font-bold text-foreground">Program Snapshot</h2>
+            </div>
+            
+            <dl className="space-y-4 text-base relative">
+              <div className="flex items-center gap-4 border-b border-border/40 pb-4">
+                <Target className="h-5 w-5 text-ink-soft" />
+                <dt className="text-ink-soft font-semibold w-24">Duration</dt>
+                <dd className="font-bold text-foreground text-right flex-1">1 Year</dd>
+              </div>
+              <div className="flex items-center gap-4 border-b border-border/40 pb-4">
+                <Calendar className="h-5 w-5 text-ink-soft" />
+                <dt className="text-ink-soft font-semibold w-24">Day</dt>
+                <dd className="font-bold text-foreground text-right flex-1">Every Sunday</dd>
+              </div>
+              <div className="flex items-center gap-4 border-b border-border/40 pb-4">
+                <Clock className="h-5 w-5 text-ink-soft" />
+                <dt className="text-ink-soft font-semibold w-24">Time</dt>
+                <dd className="font-bold text-foreground text-right flex-1">{scheduleTime}</dd>
+              </div>
+              <div className="flex items-center gap-4 pb-1">
+                <MapPin className="h-5 w-5 text-ink-soft" />
+                <dt className="text-ink-soft font-semibold w-24">Venue</dt>
+                <dd className="font-bold text-foreground text-right flex-1">Gaurang Dham</dd>
+              </div>
+            </dl>
+            <div className="mt-8 rounded-2xl border border-accent/20 bg-accent/5 p-5 flex gap-3 items-start relative">
+              <Lightbulb className="h-5 w-5 text-accent-strong shrink-0 mt-0.5" />
+              <div>
+                <p className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-accent-strong">
+                  Current Note
+                </p>
+                <p className="mt-1 text-sm text-foreground font-medium">
+                  Update the session time, contact number, and mentor photos before
+                  publishing for registrations.
+                </p>
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        <section
+          id="about"
+          className="mx-auto w-full max-w-[900px] animate-rise px-6 py-16 sm:px-10 [animation-delay:180ms]"
+        >
+           <div className="text-center mb-12">
+              <p className="inline-flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-accent-strong bg-accent/10 py-1.5 px-3 rounded-full">
+                 <Star className="h-3.5 w-3.5" /> Identity & Vision
+              </p>
+              <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
+                Name Options for Sunday School
+              </h2>
+              <p className="mt-4 text-lg leading-relaxed text-ink-soft max-w-2xl mx-auto font-medium">
+                Two strong identity options are highlighted first, followed by
+                additional names suitable for curriculum branding and outreach.
+              </p>
+           </div>
+
+          <div className="flex flex-col gap-8">
+            <article className="glass-panel rounded-3xl border p-6 sm:p-8 shadow-md">
+              <div className="flex items-center gap-3 mb-6 border-b border-border/40 pb-4">
+                 <Shield className="h-5 w-5 text-accent-strong" />
+                 <h3 className="text-xl font-bold text-foreground">Primary Choices</h3>
+              </div>
+              <div className="space-y-4">
+                {programNames.slice(0, 2).map((item) => (
+                  <div
+                    className="rounded-2xl border-2 border-accent/10 bg-surface/80 p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 hover:border-accent/30 transition-colors"
+                    key={item.name}
+                  >
+                    <div>
+                      <p className="font-script text-2xl font-bold text-foreground">{item.name}</p>
+                      <p className="mt-1 text-base font-bold text-accent-strong">
+                        {item.transliteration}
+                      </p>
+                    </div>
+                    <p className="text-sm text-ink-soft font-medium sm:text-right sm:max-w-[200px] leading-relaxed">{item.meaning}</p>
+                  </div>
+                ))}
+              </div>
+            </article>
+
+            <article className="glass-panel rounded-3xl border p-6 sm:p-8 shadow-md">
+              <div className="flex items-center gap-3 mb-6 border-b border-border/40 pb-4">
+                 <BookOpen className="h-5 w-5 text-accent-strong" />
+                 <h3 className="text-xl font-bold text-foreground">Additional Explanations</h3>
+              </div>
+              <ul className="grid gap-4 sm:grid-cols-2">
+                {programNames.slice(2).map((item) => (
+                  <li
+                    className="rounded-xl border border-border/60 bg-surface/50 p-5 hover:bg-surface transition-colors"
+                    key={item.name}
+                  >
+                    <p className="text-base font-bold text-foreground flex flex-col gap-1">
+                      {item.name}
+                      {item.transliteration ? (
+                        <span className="text-xs font-semibold text-accent-strong">{item.transliteration}</span>
+                      ) : null}
+                    </p>
+                    <p className="mt-2 text-sm font-medium text-ink-soft leading-relaxed">{item.meaning}</p>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section className="mx-auto w-full max-w-[1100px] animate-rise px-6 py-16 sm:px-10 lg:px-12 [animation-delay:220ms]">
+          <div className="glass-panel rounded-3xl border p-8 sm:p-12 shadow-xl relative overflow-hidden">
+            <div className="absolute -right-20 -top-20 opacity-5">
+               <Heart className="h-96 w-96 text-accent-strong" />
+            </div>
+            <div className="relative text-center max-w-3xl mx-auto mb-16">
+               <p className="text-sm font-bold uppercase tracking-[0.2em] text-accent-strong mb-4">Values & Principles</p>
+               <h2 className="text-2xl font-extrabold text-foreground sm:text-4xl">Timeless Wisdom</h2>
+            </div>
+            <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3 relative">
+              {SanskritTaglines.map((item, index) => (
+                <div
+                  className="group rounded-3xl border border-border/80 bg-surface/80 p-8 hover:bg-white hover:border-accent/40 hover:shadow-md transition-all duration-300"
+                  key={item.line}
+                >
+                  <div className="mb-4 h-10 w-10 rounded-full bg-accent/10 flex items-center justify-center text-accent-strong font-bold">
+                     {index + 1}
+                  </div>
+                  <p className="font-script text-2xl font-bold text-foreground mb-3">{item.line}</p>
+                  <p className="text-base font-medium text-ink-soft">{item.translation}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="modules"
+          className="mx-auto w-full max-w-[1100px] animate-rise px-6 py-16 sm:px-10 lg:px-12 [animation-delay:280ms]"
+        >
+          <div className="text-center mb-16">
+             <p className="inline-flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-[0.2em] text-accent-strong bg-accent/10 py-2 px-4 rounded-full">
+                 <Compass className="h-4 w-4" /> Comprehensive Curriculum
+              </p>
+            <h2 className="mt-6 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
+              Four Powerful Modules
+            </h2>
+            <p className="mt-6 text-xl leading-relaxed text-ink-soft max-w-3xl mx-auto font-medium">
+              A carefully structured journey designed to elevate every aspect of a student&apos;s life.
+            </p>
+          </div>
+          <div className="grid gap-8 md:grid-cols-2">
+            {modules.map((module, index) => {
+              const Icon = moduleIcons[index];
+              return (
+                 <article
+                   className={`relative overflow-hidden rounded-3xl border-2 p-8 sm:p-10 ${moduleSurfaceStyles[index]} shadow-lg transition-transform hover:-translate-y-1`}
+                   key={module.title}
+                 >
+                   <div className="absolute right-0 top-0 p-8 opacity-[0.03]">
+                      <Icon className="h-48 w-48" />
+                   </div>
+                   <div className="relative">
+                      <div className="mb-8 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-white/60 shadow-sm text-accent-strong">
+                         <Icon className="h-8 w-8" />
+                      </div>
+                      <h3 className="text-2xl font-extrabold text-foreground mb-6 max-w-[15ch] leading-tight">{module.title}</h3>
+                      <ul className="space-y-5">
+                        {module.focus.map((point) => (
+                          <li className="flex items-start gap-4 text-lg font-medium text-[#2a241d]" key={point}>
+                            <CheckCircle className="h-6 w-6 text-accent shrink-0 mt-0.5" />
+                            <span>{point}</span>
+                          </li>
+                        ))}
+                      </ul>
+                   </div>
+                 </article>
+              )
+            })}
+          </div>
+        </section>
+
+        <section className="mx-auto grid w-full max-w-[1400px] animate-rise gap-10 px-6 py-20 sm:px-10 md:grid-cols-2 lg:px-12 [animation-delay:320ms]">
+          <article className="glass-panel rounded-3xl border p-8 sm:p-12 shadow-xl relative overflow-hidden">
+             <div className="absolute -right-10 -top-10 opacity-5 text-accent-strong">
+                <Target className="w-64 h-64" />
+             </div>
+             <div className="relative">
+                <div className="flex items-center gap-4 mb-10">
+                   <div className="p-4 bg-accent/10 rounded-full">
+                      <Target className="h-8 w-8 text-accent-strong" />
+                   </div>
+                   <h2 className="text-2xl font-extrabold text-foreground">What Students Will Gain</h2>
+                </div>
+                <ul className="space-y-6">
+                  {studentGains.map((item) => (
+                    <li className="flex items-center gap-5 text-xl font-medium text-foreground bg-surface/50 p-4 rounded-2xl border border-border/40" key={item}>
+                      <Star className="h-6 w-6 text-accent flex-shrink-0" fill="currentColor" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+             </div>
+          </article>
+
+          <article className="glass-panel rounded-3xl border p-8 sm:p-12 shadow-xl relative overflow-hidden bg-gradient-to-br from-surface to-accent/5">
+             <div className="absolute -right-10 -top-10 opacity-5 text-accent-strong">
+                <Sparkles className="w-64 h-64" />
+             </div>
+             <div className="relative">
+                <div className="flex items-center gap-4 mb-10">
+                   <div className="p-4 bg-accent/10 rounded-full">
+                      <Sparkles className="h-8 w-8 text-accent-strong" />
+                   </div>
+                   <h2 className="text-2xl font-extrabold text-foreground">Special Features</h2>
+                </div>
+                <ul className="space-y-6">
+                  {specialFeatures.map((item) => (
+                    <li className="flex items-center gap-5 text-xl font-medium text-foreground bg-white/50 p-4 rounded-2xl border border-border/40" key={item}>
+                      <CheckCircle className="h-6 w-6 text-accent flex-shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+             </div>
+          </article>
+        </section>
+
+        <section
+          id="mentors"
+          className="mx-auto w-full max-w-[1100px] animate-rise px-6 py-16 sm:px-10 lg:px-12 [animation-delay:360ms]"
+        >
+          <div className="glass-panel rounded-3xl border p-8 sm:p-12 md:p-16 shadow-xl">
+             <div className="text-center max-w-3xl mx-auto mb-16">
+                 <p className="inline-flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-[0.2em] text-accent-strong bg-accent/10 py-2 px-4 rounded-full">
+                     <Users className="h-4 w-4" /> Guidance Team
+                 </p>
+                <h2 className="mt-6 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
+                  Experienced Mentors for Youth Development
+                </h2>
+                <p className="mt-6 text-xl leading-relaxed text-ink-soft font-medium">
+                  Mentors are committed to value-based education, personality
+                  development, and spiritual growth for students.
+                </p>
+             </div>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {mentors.map((mentor) => (
+                <article
+                  className="rounded-2xl border border-border/70 bg-surface/80 p-8 shadow-sm hover:shadow-md transition-shadow"
+                  key={mentor.name}
+                >
+                  <div className="flex flex-col items-center text-center gap-5">
+                    <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full border-[3px] border-accent/20 bg-gradient-to-br from-surface to-accent/10 text-2xl font-bold text-accent-strong shadow-inner">
+                      {getInitials(mentor.name)}
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold text-foreground mb-2">
+                        {mentor.name}
+                      </h3>
+                      <ul className="mb-4 space-y-1.5 text-sm font-medium text-ink-soft">
+                        {mentor.qualification.map((item) => (
+                          <li key={item} className="inline-block bg-accent/5 px-3 py-1 rounded-full m-0.5 border border-accent/10">{item}</li>
+                        ))}
+                      </ul>
+                      <p className="text-base font-semibold text-accent-strong bg-accent/5 py-2 px-4 rounded-xl border border-accent/10">
+                        {mentor.role}
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="register"
+          className="mx-auto w-full max-w-[1100px] animate-rise px-6 py-16 sm:px-10 lg:px-12 [animation-delay:420ms]"
+        >
+          <div className="relative overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-accent/10 via-surface to-accent/5 p-10 sm:p-16 shadow-2xl">
+            <div className="pointer-events-none absolute right-0 top-0 h-96 w-96 rounded-full bg-[radial-gradient(circle,_rgba(191,116,42,0.15),_rgba(191,116,42,0))]" />
+            <div className="pointer-events-none absolute left-0 bottom-0 h-96 w-96 rounded-full bg-[radial-gradient(circle,_rgba(191,116,42,0.15),_rgba(191,116,42,0))]" />
+            
+            <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center text-center">
+               <span className="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-white px-6 py-3 shadow-sm mb-8">
+                  <Star className="h-5 w-5 text-accent-strong" fill="currentColor" />
+                  <p className="text-sm font-bold uppercase tracking-[0.2em] text-accent-strong">
+                    Registration Open Now
+                  </p>
+               </span>
+               <h2 className="text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl mb-6">
+                 Limited Seats Available
+               </h2>
+               <p className="text-lg leading-relaxed text-ink-soft sm:text-xl font-medium mb-12 max-w-3xl">
+                 Parents are invited to register students for this one-year Sunday
+                 School program and support them in developing values, confidence,
+                 and clarity of purpose.
+               </p>
+
+               <div className="grid gap-6 w-full sm:grid-cols-2 max-w-3xl">
+                 <div className="rounded-3xl border border-border/70 bg-white p-8 shadow-sm flex flex-col items-center justify-center gap-4">
+                   <Phone className="h-8 w-8 text-accent-strong" />
+                   <p className="text-sm font-bold uppercase tracking-[0.2em] text-ink-soft">
+                     Contact
+                   </p>
+                   <p className="text-2xl font-extrabold text-foreground">
+                     {contactNumber}
+                   </p>
+                 </div>
+                 <div className="rounded-3xl border border-border/70 bg-white p-8 shadow-sm flex flex-col items-center justify-center gap-4">
+                   <Clock className="h-8 w-8 text-accent-strong" />
+                   <p className="text-sm font-bold uppercase tracking-[0.2em] text-ink-soft">
+                     Sunday Session Time
+                   </p>
+                   <p className="text-2xl font-extrabold text-foreground">
+                     {scheduleTime}
+                   </p>
+                 </div>
+               </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </>
+  );
+}
