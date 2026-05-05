@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import DarkVeil from "@/components/DarkVeil";
 import {
   Globe,
@@ -21,6 +21,10 @@ import {
   Sparkles,
   ClipboardList
 } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 type Language = "en" | "hi" | "mr";
 
@@ -29,7 +33,7 @@ const I18N = {
     nav: { home: "Home", about: "About", modules: "Modules", mentors: "Mentors", contact: "Contact" },
     hero: {
       kicker: "SUNDAY SCHOOL FOR YOUTH (For Std. 8th, 9th & 10th)",
-      title: "Saṁskāra Gurukula",
+      title: "Medhasamvardhan Gurukul",
       titleHindi: "संस्कार गुरुकुल",
       subtitle: "\"Building Character, Confidence & Culture\"",
       meaning: "Meaning: Self-elevate",
@@ -110,7 +114,7 @@ const I18N = {
     hero: {
       kicker: "युवाओं के लिए संडे स्कूल (कक्षा 8, 9 और 10 के छात्रों के लिए)",
       title: "संस्कार गुरुकुल",
-      titleHindi: "Saṁskāra Gurukula",
+      titleHindi: "Medhasamvardhan Gurukul",
       subtitle: "\"चरित्र, आत्मविश्वास और संस्कृति का निर्माण\"",
       meaning: "अर्थ: आत्म-उत्थान (Self-elevate)",
       tagline: "संस्कारात् भवति श्रेष्ठता | संस्कारों से ही महानता आती है",
@@ -190,7 +194,7 @@ const I18N = {
     hero: {
       kicker: "युवकांसाठी संडे स्कूल (इयत्ता ८वी, ९वी आणि १०वी च्या विद्यार्थ्यांसाठी)",
       title: "संस्कार गुरुकुल",
-      titleHindi: "Saṁskāra Gurukula",
+      titleHindi: "Medhasamvardhan Gurukul",
       subtitle: "\"चारित्र्य, आत्मविश्वास आणि संस्कृतीची निर्मिती\"",
       meaning: "अर्थ: आत्मोन्नती (Self-elevate)",
       tagline: "संस्कारात् भवति श्रेष्ठता | संस्कारातूनच श्रेष्ठत्व येते",
@@ -271,6 +275,7 @@ export default function LandingPage() {
   const [lang, setLang] = useState<Language>("en");
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const mainRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -280,21 +285,157 @@ export default function LandingPage() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(".hero-animate", {
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.12,
+        ease: "power3.out",
+        delay: 0.2
+      });
+
+      gsap.from(".hero-quote", {
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".hero-quote",
+          start: "top 85%",
+          toggleActions: "play none none reverse"
+        }
+      });
+
+      gsap.to(".section-title-anim", {
+        y: 0,
+        opacity: 1,
+        duration: 0.7,
+        stagger: 0.1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".section-title-anim",
+          start: "top 85%",
+          toggleActions: "play none none reverse"
+        }
+      });
+
+      gsap.to(".about-card", {
+        y: 0,
+        opacity: 1,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".about-cards-container",
+          start: "top 80%",
+          toggleActions: "play none none reverse"
+        }
+      });
+
+      gsap.to(".module-card", {
+        y: 0,
+        opacity: 1,
+        duration: 0.6,
+        stagger: 0.15,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".modules-grid",
+          start: "top 80%",
+          toggleActions: "play none none reverse"
+        }
+      });
+
+      gsap.to(".mentor-card", {
+        y: 0,
+        opacity: 1,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".mentors-grid",
+          start: "top 80%",
+          toggleActions: "play none none reverse"
+        }
+      });
+
+      gsap.to(".stat-item", {
+        y: 0,
+        opacity: 1,
+        duration: 0.5,
+        stagger: 0.08,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".stats-container",
+          start: "top 85%",
+          toggleActions: "play none none reverse"
+        }
+      });
+
+      gsap.to(".feature-item", {
+        x: 0,
+        opacity: 1,
+        duration: 0.4,
+        stagger: 0.06,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".features-list",
+          start: "top 80%",
+          toggleActions: "play none none reverse"
+        }
+      });
+
+      gsap.to(".contact-cta", {
+        y: 0,
+        opacity: 1,
+        duration: 0.6,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".contact-section",
+          start: "top 75%",
+          toggleActions: "play none none reverse"
+        }
+      });
+
+      gsap.to(".nav-logo", {
+        scrollTrigger: {
+          trigger: "body",
+          start: "top top",
+          end: 99999,
+          onUpdate: (self) => {
+            const nav = document.querySelector("nav");
+            if (nav) {
+              gsap.to(nav, {
+                backgroundColor: self.progress > 0.05 ? "rgba(255,255,255,0.9)" : "transparent",
+                duration: 0.3
+              });
+            }
+          }
+        }
+      });
+    }, mainRef);
+
+    return () => ctx.revert();
+  }, []);
+
   const t = I18N[lang];
 
   return (
     <div className="min-h-screen font-sans bg-[var(--background)] selection:bg-[var(--accent-soft)] selection:text-[var(--accent-strong)]">
+      <main ref={mainRef}>
       {/* Navigation */}
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? "bg-white/80 backdrop-blur-md shadow-sm border-b border-[var(--border)] py-3" : "bg-transparent py-5"}`}>
+      <nav className={`nav-logo fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? "bg-white/90 backdrop-blur-md shadow-sm border-b border-[var(--border)] py-3" : "bg-transparent py-5"}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center">
 
             <a href="#" className="flex items-center gap-2 group">
-              <div className="w-10 h-10 rounded-full bg-[var(--accent-soft)] flex items-center justify-center border border-[var(--border)] group-hover:bg-[var(--accent)] transition-colors duration-300">
-                <Landmark className="w-6 h-6 text-[var(--accent-strong)] group-hover:text-white transition-colors duration-300" />
+              <div className="w-10 h-10 rounded-full bg-[var(--accent-soft)] flex items-center justify-center border border-[var(--border)] group-hover:bg-[var(--accent)] transition-all duration-300 group-hover:scale-110">
+                <Landmark className="w-6 h-6 text-[var(--accent-strong)] group-hover:text-white transition-all duration-300" />
               </div>
               <span className="font-bold text-xl md:text-2xl text-[var(--foreground)] tracking-tight">
-                {lang === "en" ? "Saṁskāra" : "संस्कार"} <span className="text-[var(--accent)]">Gurukula</span>
+                {lang === "en" ? "Medhasamvardhan" : "मेधासंवर्धन"} <span className="text-[var(--accent)]">Gurukul</span>
               </span>
             </a>
 
@@ -343,27 +484,26 @@ export default function LandingPage() {
         </div>
       </nav>
 
-      <main>
-        {/* Hero Section */}
+      {/* Hero Section */}
         <section className="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden px-4" id="home">
           
           <div className="absolute top-0 inset-x-0 h-[1000px] w-full bg-gradient-to-b from-[var(--accent-soft)] via-transparent to-[var(--background)] opacity-40 pointer-events-none z-0"></div>
 
-          <div className="max-w-4xl mx-auto text-center animate-rise relative z-10">
-            <span className="section-kicker mb-4 inline-block px-3 py-1 bg-white/80 border border-[var(--border)] rounded-full backdrop-blur-sm">
+          <div className="max-w-4xl mx-auto text-center relative z-10">
+            <span className="hero-animate section-kicker mb-4 inline-block px-3 py-1 bg-white/80 border border-[var(--border)] rounded-full backdrop-blur-sm">
               {t.hero.kicker}
             </span>
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-[var(--foreground)] mb-3 leading-tight">
+            <h1 className="hero-animate text-5xl md:text-7xl font-bold tracking-tight text-[var(--foreground)] mb-3 leading-tight">
               {t.hero.title}
             </h1>
-            <h2 className="text-2xl md:text-3xl text-[var(--accent-strong)] font-script mb-6">
+            <h2 className="hero-animate text-2xl md:text-3xl text-[var(--accent-strong)] font-script mb-6">
               {t.hero.titleHindi} — {t.hero.meaning}
             </h2>
-            <p className="text-xl md:text-2xl font-medium text-[var(--ink-soft)] mb-6 max-w-2xl mx-auto italic">
+            <p className="hero-animate text-xl md:text-2xl font-medium text-[var(--ink-soft)] mb-6 max-w-2xl mx-auto italic">
               {t.hero.subtitle}
             </p>
 
-            <div className="flex flex-wrap justify-center gap-4 mb-20">
+            <div className="hero-animate flex flex-wrap justify-center gap-4 mb-20">
               <a href="#contact" className="primary-button group">
                 {t.hero.ctaMain}
                 <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -374,7 +514,7 @@ export default function LandingPage() {
             </div>
 
             {/* Premium Quote Grid */}
-            <div className="relative max-w-4xl mx-auto mt-4 px-2 w-full">
+            <div className="hero-animate relative max-w-4xl mx-auto mt-4 px-2 w-full">
               <div className="absolute inset-0 bg-gradient-to-r from-[var(--accent-soft)] to-[var(--surface-muted)] rounded-3xl transform rotate-1 scale-105 opacity-60 blur-lg -z-10 transition-transform duration-700 hover:rotate-2"></div>
               <div className="glass-panel rounded-3xl p-8 md:p-12 border border-[var(--border)] relative bg-white/70 shadow-2xl backdrop-blur-xl transition-all duration-500 hover:shadow-[0_20px_40px_-15px_rgba(135,69,24,0.15)] w-full">
                 <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[var(--accent-strong)] to-[var(--accent)] text-white px-6 py-2.5 rounded-full shadow-lg flex items-center gap-2.5 border border-white/20 w-max max-w-[90%]">
@@ -384,7 +524,7 @@ export default function LandingPage() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-x-12 md:gap-y-8 text-left mt-6">
                   {t.quotes.slice(0, 4).map((q, i) => (
-                    <div key={i} className="flex items-start gap-4 group p-4 rounded-2xl hover:bg-white/80 transition-all duration-300 hover:shadow-sm border border-transparent hover:border-[var(--border)]/50">
+                    <div key={i} className="hero-quote flex items-start gap-4 group p-4 rounded-2xl hover:bg-white/80 transition-all duration-300 hover:shadow-sm border border-transparent hover:border-[var(--border)]/50">
                       <div className="bg-[var(--surface-muted)] p-2.5 rounded-xl group-hover:bg-[var(--accent)] group-hover:-rotate-3 group-hover:scale-110 transition-all duration-300 shrink-0 shadow-inner">
                         <BookOpen className="w-5 h-5 text-[var(--accent-strong)] group-hover:text-white transition-colors" />
                       </div>
@@ -397,47 +537,42 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* About Section */}
+{/* About Section */}
         <section id="about" className="py-20 bg-white/40">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="glass-panel p-6 rounded-2xl flex flex-col justify-center items-center text-center">
+                <div className="about-cards-container grid grid-cols-2 gap-4">
+                  <div className="about-card glass-panel p-6 rounded-2xl flex flex-col justify-center items-center text-center hover:-translate-y-2 transition-transform duration-300">
                     <Heart className="w-10 h-10 text-[var(--accent)] mb-3" />
                     <h4 className="font-bold text-[var(--foreground)]">{t.about.points[0]}</h4>
                   </div>
-                  <div className="glass-panel p-6 rounded-2xl flex flex-col justify-center items-center text-center translate-y-6">
+                  <div className="about-card glass-panel p-6 rounded-2xl flex flex-col justify-center items-center text-center translate-y-6 hover:-translate-y-2 transition-transform duration-300">
                     <User className="w-10 h-10 text-[var(--accent)] mb-3" />
                     <h4 className="font-bold text-[var(--foreground)]">{t.about.points[1]}</h4>
                   </div>
-                  <div className="glass-panel p-6 rounded-2xl flex flex-col justify-center items-center text-center">
+                  <div className="about-card glass-panel p-6 rounded-2xl flex flex-col justify-center items-center text-center hover:-translate-y-2 transition-transform duration-300">
                     <Target className="w-10 h-10 text-[var(--accent)] mb-3" />
                     <h4 className="font-bold text-[var(--foreground)]">{t.about.points[2]}</h4>
                   </div>
-                  <div className="glass-panel p-6 rounded-2xl flex flex-col justify-center items-center text-center translate-y-6">
-                    <ArrowRight className="w-10 h-10 text-[var(--accent)] mb-3" />
+                  <div className="about-card glass-panel p-6 rounded-2xl flex flex-col justify-center items-center text-center translate-y-6 hover:-translate-y-2 transition-transform duration-300">
+                    <Award className="w-10 h-10 text-[var(--accent)] mb-3" />
                     <h4 className="font-bold text-[var(--foreground)]">{t.about.points[3]}</h4>
                   </div>
                 </div>
               </div>
               <div className="order-1 lg:order-2">
-                <span className="section-kicker block mb-2">{t.about.title}</span>
-                <h2 className="text-3xl md:text-5xl font-bold text-[var(--foreground)] mb-6 leading-tight">
-                  Guiding the Youth towards a <span className="text-[var(--accent-strong)]">Brighter Future</span>
-                </h2>
-                <p className="text-lg text-[var(--ink-soft)] mb-5 leading-relaxed">
-                  {t.about.p1}
-                </p>
-                <p className="text-lg text-[var(--ink-soft)] mb-8 leading-relaxed">
-                  {t.about.p2}
-                </p>
-
-                <div className="flex flex-wrap gap-3">
-                  {t.about.points.map((pt, i) => (
-                    <span key={i} className="chip-link text-sm">{pt}</span>
+                <h2 className="section-title-anim section-title mb-6 text-3xl md:text-4xl font-bold tracking-tight text-[var(--foreground)]">{t.about.title}</h2>
+                <p className="about-card text-[var(--ink-soft)] text-lg leading-relaxed mb-6">{t.about.p1}</p>
+                <p className="about-card text-[var(--ink-soft)] text-lg leading-relaxed mb-6">{t.about.p2}</p>
+                <ul className="space-y-3">
+                  {t.about.points.map((point, i) => (
+                    <li key={i} className="about-card flex items-center gap-3">
+                      <CheckCircle2 className="w-5 h-5 text-[var(--accent)] shrink-0" />
+                      <span className="text-[var(--foreground)] font-medium">{point}</span>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </div>
             </div>
           </div>
@@ -447,23 +582,23 @@ export default function LandingPage() {
         <section className="py-12 bg-gradient-to-r from-[var(--accent-strong)] to-[var(--accent)] text-white relative">
           <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] mix-blend-overlay"></div>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center divide-y md:divide-y-0 md:divide-x divide-white/20">
-              <div className="py-4 flex flex-col items-center">
+            <div className="stats-container grid grid-cols-1 md:grid-cols-4 gap-6 text-center divide-y md:divide-y-0 md:divide-x divide-white/20">
+              <div className="stat-item py-4 flex flex-col items-center">
                 <Calendar className="w-8 h-8 mb-2 text-white/80" />
                 <p className="text-sm uppercase tracking-widest text-white/70 mb-1">{t.details.title}</p>
                 <p className="font-bold text-lg">{t.details.duration}</p>
               </div>
-              <div className="py-4 flex flex-col items-center">
+              <div className="stat-item py-4 flex flex-col items-center">
                 <Clock className="w-8 h-8 mb-2 text-white/80" />
                 <p className="text-sm uppercase tracking-widest text-white/70 mb-1">Time</p>
                 <p className="font-bold text-lg">{t.details.day}<br />{t.details.time}</p>
               </div>
-              <div className="py-4 flex flex-col items-center">
+              <div className="stat-item py-4 flex flex-col items-center">
                 <MapPin className="w-8 h-8 mb-2 text-white/80" />
                 <p className="text-sm uppercase tracking-widest text-white/70 mb-1">Location</p>
                 <p className="font-bold text-lg">{t.details.venue}</p>
               </div>
-              <div className="py-4 flex flex-col items-center justify-center">
+              <div className="stat-item py-4 flex flex-col items-center justify-center">
                 <a href="#contact" className="bg-white text-[var(--accent-strong)] font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all">
                   {t.hero.ctaMain}
                 </a>
@@ -476,14 +611,14 @@ export default function LandingPage() {
         <section id="modules" className="py-24 relative">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <span className="section-kicker block mb-3">{t.modules.title}</span>
-              <h2 className="text-3xl md:text-5xl font-bold text-[var(--foreground)]">4 Powerful Modules</h2>
+              <span className="section-title-anim section-kicker block mb-3">{t.modules.title}</span>
+              <h2 className="section-title-anim text-3xl md:text-5xl font-bold text-[var(--foreground)]">4 Powerful Modules</h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="modules-grid grid grid-cols-1 md:grid-cols-2 gap-8">
               {[t.modules.m1, t.modules.m2, t.modules.m3, t.modules.m4].map((mod, idx) => (
-                <div key={idx} className="glass-panel p-8 rounded-2xl transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-                  <div className="w-12 h-12 rounded-full bg-[var(--accent-soft)] flex items-center justify-center mb-6 border border-[var(--border)] text-[var(--accent-strong)] font-bold text-xl">
+                <div key={idx} className="module-card glass-panel p-8 rounded-2xl transition-all duration-300 hover:shadow-xl hover:-translate-y-2 group">
+                  <div className="w-12 h-12 rounded-full bg-[var(--accent-soft)] flex items-center justify-center mb-6 border border-[var(--border)] text-[var(--accent-strong)] font-bold text-xl group-hover:bg-[var(--accent)] group-hover:text-white transition-all duration-300">
                     0{idx + 1}
                   </div>
                   <h3 className="text-2xl font-bold text-[var(--foreground)] mb-6 border-b border-[var(--border)] pb-4">{mod.title}</h3>
@@ -508,13 +643,13 @@ export default function LandingPage() {
 
               {/* What Students Gain */}
               <div>
-                <div className="flex items-center gap-3 mb-8">
+                <div className="section-title-anim flex items-center gap-3 mb-8">
                   <Award className="w-8 h-8 text-[var(--accent)]" />
                   <h2 className="text-3xl font-bold text-[var(--foreground)]">{t.gains.title}</h2>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="stats-container grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {t.gains.items.map((gain, i) => (
-                    <div key={i} className="bg-white/60 backdrop-blur border border-[var(--border)] p-4 rounded-xl flex items-center gap-3 hover:bg-white transition-colors">
+                    <div key={i} className="stat-item bg-white/60 backdrop-blur border border-[var(--border)] p-4 rounded-xl flex items-center gap-3 hover:bg-white hover:-translate-y-1 transition-all duration-300">
                       <div className="w-2 h-2 rounded-full bg-[var(--accent-strong)] shrink-0"></div>
                       <span className="font-semibold text-[var(--ink-soft)]">{gain}</span>
                     </div>
@@ -524,13 +659,13 @@ export default function LandingPage() {
 
               {/* Special Features */}
               <div>
-                <div className="flex items-center gap-3 mb-8">
+                <div className="section-title-anim flex items-center gap-3 mb-8">
                   <Target className="w-8 h-8 text-[var(--accent)]" />
                   <h2 className="text-3xl font-bold text-[var(--foreground)]">{t.features.title}</h2>
                 </div>
-                <ul className="space-y-5">
+                <ul className="features-list space-y-5">
                   {t.features.items.map((feat, i) => (
-                    <li key={i} className="flex items-center p-3 rounded-lg hover:bg-white/40 transition-colors">
+                    <li key={i} className="feature-item flex items-center p-3 rounded-lg hover:bg-white/60 hover:translate-x-2 transition-all duration-300">
                       <div className="bg-[var(--accent)] rounded-full p-1.5 mr-4 shadow-sm shrink-0">
                         <CheckCircle2 className="w-4 h-4 text-white" />
                       </div>
@@ -548,16 +683,16 @@ export default function LandingPage() {
         <section id="mentors" className="py-24 relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="text-center max-w-3xl mx-auto mb-16">
-              <span className="section-kicker block mb-3">Mentorship</span>
-              <h2 className="text-3xl md:text-5xl font-bold text-[var(--foreground)] mb-6">{t.mentors.title}</h2>
-              <p className="text-xl text-[var(--ink-soft)]">
+              <span className="section-title-anim section-kicker block mb-3">Mentorship</span>
+              <h2 className="section-title-anim text-3xl md:text-5xl font-bold text-[var(--foreground)] mb-6">{t.mentors.title}</h2>
+              <p className="section-title-anim text-xl text-[var(--ink-soft)]">
                 {t.mentors.subtitle}
               </p>
             </div>
 
-            <div className="flex flex-wrap justify-center gap-6">
+            <div className="mentors-grid flex flex-wrap justify-center gap-6">
               {t.mentors.list.map((mentor, idx) => (
-                <div key={idx} className="bg-white border border-[var(--border)] p-6 rounded-2xl flex flex-col items-center text-center hover:shadow-xl transition-all duration-300 group w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]">
+                <div key={idx} className="mentor-card bg-white border border-[var(--border)] p-6 rounded-2xl flex flex-col items-center text-center hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]">
                   <div className="w-20 h-20 rounded-full bg-[var(--background)] border-2 border-[var(--accent-soft)] flex items-center justify-center mb-4 group-hover:scale-110 group-hover:border-[var(--accent)] transition-all duration-300">
                     <Users className="w-8 h-8 text-[var(--accent)]" />
                   </div>
@@ -570,22 +705,22 @@ export default function LandingPage() {
         </section>
 
         {/* CTA / Contact Section */}
-        <section id="contact" className="py-24 bg-[var(--background)]">
+        <section id="contact" className="contact-section py-24 bg-[var(--background)]">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="glass-panel p-10 md:p-16 rounded-3xl relative overflow-hidden">
+            <div className="contact-cta glass-panel p-10 md:p-16 rounded-3xl relative overflow-hidden">
               <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-[var(--accent-soft)] rounded-full blur-3xl opacity-60"></div>
               <div className="absolute bottom-0 left-0 -ml-16 -mb-16 w-64 h-64 bg-white rounded-full blur-3xl opacity-60"></div>
 
               <div className="relative z-10">
-                <h2 className="text-4xl md:text-5xl font-bold text-[var(--foreground)] mb-6">{t.contact.title}</h2>
-                <div className="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-[var(--border)] mb-10">
+                <h2 className="section-title-anim text-4xl md:text-5xl font-bold text-[var(--foreground)] mb-6">{t.contact.title}</h2>
+                <div className="section-title-anim inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-[var(--border)] mb-10">
                   <ClipboardList className="w-5 h-5 text-[var(--accent-strong)]" />
                   <span className="font-semibold text-[var(--ink-soft)] text-lg">{t.contact.limited}</span>
                 </div>
 
                 <br />
 
-                <a href="#register" className="primary-button text-lg px-10 py-4 shadow-2xl inline-flex items-center">
+                <a href="#register" className="contact-cta primary-button text-lg px-10 py-4 shadow-2xl inline-flex items-center hover:-translate-y-1 transition-transform">
                   <Phone className="w-5 h-5 mr-3" />
                   {t.contact.btn}
                 </a>
@@ -602,11 +737,11 @@ export default function LandingPage() {
           <div className="flex items-center gap-2 mb-6 opacity-80">
             <Landmark className="w-6 h-6 text-[var(--accent)]" />
             <span className="font-bold text-xl text-[var(--foreground)] tracking-tight">
-             Saṁskāra Gurukula
+             Medhasamvardhan Gurukul
             </span>
           </div>
           <p className="text-[var(--ink-soft)] font-medium mb-6">
-            &copy; {new Date().getFullYear()} Saṁskāra Gurukula. All rights reserved.
+            &copy; {new Date().getFullYear()} Medhasamvardhan Gurukul. All rights reserved.
           </p>
           <div className="flex gap-4">
             <a href="#" className="chip-link text-xs">Privacy Policy</a>

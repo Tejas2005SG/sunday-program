@@ -38,7 +38,7 @@ type Mentor = {
 const programNames: ProgramName[] = [
   {
     name: "संस्कार गुरुकुल",
-    transliteration: "Saṁskāra Gurukula",
+    transliteration: "Medhasamvardhan Gurukul",
     meaning: "A learning space rooted in values",
   },
   {
