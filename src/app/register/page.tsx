@@ -2,8 +2,8 @@ import RegisterForm from "@/components/registration/RegisterForm";
 import SiteNavbar from "@/components/registration/Navbar";
 
 export const metadata = {
-  title: "Register | Medhasamvardhan Gurukul",
-  description: "Register for Medhasamvardhan Gurukul Sunday School program",
+  title: "Register | Medha Samvardhan Gurukul",
+  description: "Register for Medha Samvardhan Gurukul Sunday School program",
 };
 
 export default function RegisterPage() {

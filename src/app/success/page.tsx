@@ -3,7 +3,7 @@ import { CheckCircle, ArrowLeft } from "lucide-react";
 import SiteNavbar from "@/components/registration/Navbar";
 
 export const metadata = {
-  title: "Payment Submitted | Medhasamvardhan Gurukul",
+  title: "Payment Submitted | Medha Samvardhan Gurukul",
   description: "Your payment details have been submitted successfully",
 };
 

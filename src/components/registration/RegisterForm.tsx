@@ -93,10 +93,10 @@ export default function RegisterForm() {
     }`;
 
   const programs = [
-    "Medhasamvardhan Gurukul - Std 8",
-    "Medhasamvardhan Gurukul - Std 9",
-    "Medhasamvardhan Gurukul - Std 10",
-    "Medhasamvardhan Gurukul - All Standards",
+    "Medha Samvardhan Gurukul - Std 8",
+    "Medha Samvardhan Gurukul - Std 9",
+    "Medha Samvardhan Gurukul - Std 10",
+    "Medha Samvardhan Gurukul - All Standards",
   ];
 
   return (

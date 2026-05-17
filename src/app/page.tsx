@@ -9,9 +9,11 @@ import Footer from "@/components/layout/Footer";
 import HeroSection from "@/components/sections/HeroSection";
 import AboutSection from "@/components/sections/AboutSection";
 import DetailsBanner from "@/components/sections/DetailsBanner";
+import TempleImagesSection from "@/components/sections/TempleImagesSection";
 import ModulesSection from "@/components/sections/ModulesSection";
 import HighlightsSection from "@/components/sections/HighlightsSection";
 import MentorsSection from "@/components/sections/MentorsSection";
+import VisionMissionSection from "@/components/sections/VisionMissionSection";
 import ContactSection from "@/components/sections/ContactSection";
 
 export default function LandingPage() {
@@ -38,9 +40,11 @@ export default function LandingPage() {
         <HeroSection t={t} />
         <AboutSection t={t} />
         <DetailsBanner t={t} />
+        <TempleImagesSection />
         <ModulesSection t={t} />
         <HighlightsSection t={t} />
         <MentorsSection t={t} />
+        <VisionMissionSection t={t} />
         <ContactSection t={t} />
       </main>
       <Footer />

@@ -9,14 +9,7 @@ export default function ModulesSection({ t }: ModulesSectionProps) {
   return (
     <section id="modules" className="py-24 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="temple-images-grid grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-          <div className="temple-img opacity-0 translate-y-10 overflow-hidden rounded-2xl shadow-lg">
-            <img src="/ISKCON Temple/1.png" alt="ISKCON Temple 1" className="w-full h-80 object-cover hover:scale-105 transition-transform duration-500" />
-          </div>
-          <div className="temple-img opacity-0 translate-y-10 overflow-hidden rounded-2xl shadow-lg">
-            <img src="/ISKCON Temple/2.png" alt="ISKCON Temple 2" className="w-full h-80 object-cover hover:scale-105 transition-transform duration-500" />
-          </div>
-        </div>
+        
 
         <div className="text-center mb-16">
           <span className="section-title-anim section-kicker block mb-3">{t.modules.title}</span>

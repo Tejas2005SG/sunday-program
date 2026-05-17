@@ -18,8 +18,8 @@ const notoSansDevanagari = Noto_Sans_Devanagari({
 
 export const metadata: Metadata = {
   title: {
-    default: "Medhasamvardhan Gurukul | Sunday School for Youth",
-    template: "%s | Medhasamvardhan Gurukul",
+      default: "Medha Samvardhan Gurukul | Sunday School for Youth",
+      template: "%s | Medha Samvardhan Gurukul",
   },
   description:
     "A 1-year Sunday School program by Gaurang Dham for students of standards 8 to 10, focused on character, confidence, culture, and spiritual wisdom.",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     type: "website",
   },
   twitter: {
-    title: "Medhasamvardhan Gurukul | Sunday School for Youth",
+    title: "Medha Samvardhan Gurukul | Sunday School for Youth",
     description:
       "Value-based youth education program at Gaurang Dham for students of Std. 8th, 9th, and 10th.",
   },

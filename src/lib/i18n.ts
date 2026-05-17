@@ -2,10 +2,18 @@ export type Language = "en" | "hi" | "mr";
 
 export const I18N = {
   en: {
-    nav: { home: "Home", about: "About", modules: "Modules", mentors: "Mentors", contact: "Contact" },
+    nav: {
+      home: "Home",
+      about: "About",
+      modules: "Modules",
+      mentors: "Mentors",
+      contact: "Contact",
+      register: "Register",
+      enrollNow: "Enroll Now",
+    },
     hero: {
       kicker: "SUNDAY SCHOOL FOR YOUTH (For Std. 8th, 9th & 10th)",
-      title: "Medhasamvardhan Gurukul",
+      title: "Medha Samvardhan Gurukul",
       titleHindi: "संस्कार गुरुकुल",
       subtitle: "\"Building Character, Confidence & Culture\"",
       meaning: "Meaning: Self-elevate",
@@ -75,6 +83,16 @@ export const I18N = {
       limited: "Limited Seats Available",
       btn: "Contact Us Today"
     },
+    visionMission: {
+      kicker: "About Us",
+      title: "Our Vision & Mission",
+      visionTitle: "Our Vision",
+      visionBody:
+        "To develop value-based, confident, and responsible youth with strong character and clear purpose.",
+      missionTitle: "Our Mission",
+      missionBody:
+        "To guide students through structured learning and activities for character building, personality development, and spiritual growth.",
+    },
     quotes: [
       "आत्मोन्नतिः परं लक्ष्यं – Self-elevation is the highest goal",
       "विद्यया अमृतमश्नुते – Through knowledge, one attains immortality",
@@ -83,11 +101,19 @@ export const I18N = {
     ]
   },
   hi: {
-    nav: { home: "होम", about: "परिचय", modules: "मॉड्यूल", mentors: "मार्गदर्शक", contact: "संपर्क" },
+    nav: {
+      home: "होम",
+      about: "परिचय",
+      modules: "मॉड्यूल",
+      mentors: "मार्गदर्शक",
+      contact: "संपर्क",
+      register: "पंजीकरण",
+      enrollNow: "अभी पंजीकरण करें",
+    },
     hero: {
       kicker: "युवाओं के लिए संडे स्कूल (कक्षा 8, 9 और 10 के छात्रों के लिए)",
       title: "संस्कार गुरुकुल",
-      titleHindi: "Medhasamvardhan Gurukul",
+      titleHindi: "Medha Samvardhan Gurukul",
       subtitle: "\"चरित्र, आत्मविश्वास और संस्कृति का निर्माण\"",
       meaning: "अर्थ: आत्म-उत्थान (Self-elevate)",
       tagline: "संस्कारात् भवति श्रेष्ठता | संस्कारों से ही महानता आती है",
@@ -156,6 +182,16 @@ export const I18N = {
       limited: "सीमित सीटें उपलब्ध हैं",
       btn: "आज ही संपर्क करें"
     },
+    visionMission: {
+      kicker: "हमारे बारे में",
+      title: "हमारा दृष्टिकोण और मिशन",
+      visionTitle: "हमारा दृष्टिकोण",
+      visionBody:
+        "मूल्य-आधारित, आत्मविश्वासी और जिम्मेदार युवाओं का विकास करना, जिनमें मजबूत चरित्र और स्पष्ट उद्देश्य हो।",
+      missionTitle: "हमारा मिशन",
+      missionBody:
+        "छात्रों को संरचित शिक्षण और गतिविधियों के माध्यम से मार्गदर्शन करना ताकि चरित्र निर्माण, व्यक्तित्व विकास और आध्यात्मिक प्रगति हो सके।",
+    },
     quotes: [
       "आत्मोन्नतिः परं लक्ष्यं – आत्मोन्नति ही परम लक्ष्य है",
       "विद्यया अमृतमश्नुते – विद्या से अमृत की प्राप्ति होती है",
@@ -164,11 +200,19 @@ export const I18N = {
     ]
   },
   mr: {
-    nav: { home: "मुख्यपृष्ठ", about: "आमच्याबद्दल", modules: "मॉड्यूल्स", mentors: "मार्गदर्शक", contact: "संपर्क" },
+    nav: {
+      home: "मुख्यपृष्ठ",
+      about: "आमच्याबद्दल",
+      modules: "मॉड्यूल्स",
+      mentors: "मार्गदर्शक",
+      contact: "संपर्क",
+      register: "नोंदणी",
+      enrollNow: "आता नोंदणी करा",
+    },
     hero: {
       kicker: "युवकांसाठी संडे स्कूल (इयत्ता ८वी, ९वी आणि १०वी च्या विद्यार्थ्यांसाठी)",
       title: "संस्कार गुरुकुल",
-      titleHindi: "Medhasamvardhan Gurukul",
+      titleHindi: "Medha Samvardhan Gurukul",
       subtitle: "\"चारित्र्य, आत्मविश्वास आणि संस्कृतीची निर्मिती\"",
       meaning: "अर्थ: आत्मोन्नती (Self-elevate)",
       tagline: "संस्कारात् भवति श्रेष्ठता | संस्कारातूनच श्रेष्ठत्व येते",
@@ -236,6 +280,16 @@ export const I18N = {
       title: "नोंदणी सुरू झाली आहे!",
       limited: "मर्यादित जागा शिल्लक आहेत",
       btn: "आजच संपर्क साधा"
+    },
+    visionMission: {
+      kicker: "आमच्याबद्दल",
+      title: "आमचा दृष्टिकोन आणि ध्येय",
+      visionTitle: "आमचा दृष्टिकोन",
+      visionBody:
+        "मूल्याधिष्ठित, आत्मविश्वासू आणि जबाबदार युवा घडवणे, ज्यांच्यात मजबूत चारित्र्य आणि स्पष्ट उद्दिष्ट असते.",
+      missionTitle: "आमचे ध्येय",
+      missionBody:
+        "चारित्र्य घडवणूक, व्यक्तिमत्त्व विकास आणि आध्यात्मिक प्रगतीसाठी संरचित शिक्षण आणि उपक्रमांद्वारे विद्यार्थ्यांना मार्गदर्शन करणे.",
     },
     quotes: [
       "आत्मोन्नतिः परं लक्ष्यं – आत्मोन्नती हेच सर्वोच्च ध्येय",

@@ -1,4 +1,5 @@
-import { Globe, ChevronDown, Landmark, Menu, X } from "lucide-react";
+import { Globe, ChevronDown, Menu, X } from "lucide-react";
+import Image from "next/image";
 import { Language, I18N } from "@/lib/i18n";
 import { useState } from "react";
 
@@ -18,11 +19,16 @@ export default function Navbar({ lang, setLang, scrolled }: NavbarProps) {
         <div className="flex justify-between items-center">
 
           <a href="/" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 rounded-full bg-[var(--accent-soft)] flex items-center justify-center border border-[var(--border)] group-hover:bg-[var(--accent)] transition-all duration-300 group-hover:scale-110">
-              <Landmark className="w-6 h-6 text-[var(--accent-strong)] group-hover:text-white transition-all duration-300" />
-            </div>
+            <Image
+              src="/logo.png"
+              alt="Medha Samvardhan Gurukul Logo"
+              width={40}
+              height={40}
+              className="h-10 w-10 object-contain"
+              priority
+            />
             <span className="font-bold text-xl md:text-2xl text-[var(--foreground)] tracking-tight">
-              {lang === "en" ? "Medhasamvardhan" : "मेधासंवर्धन"} <span className="text-[var(--accent)]">Gurukul</span>
+              {lang === "en" ? "Medha Samvardhan" : "मेधासंवर्धन"} <span className="text-[var(--accent)]">Gurukul</span>
             </span>
           </a>
 
