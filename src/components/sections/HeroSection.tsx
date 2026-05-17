@@ -18,7 +18,8 @@ export default function HeroSection({ t }: HeroSectionProps) {
           {t.hero.title}
         </h1>
         <h2 className="hero-animate text-xl sm:text-2xl md:text-3xl text-[var(--accent-strong)] font-script mb-6">
-          {t.hero.titleHindi} — {t.hero.meaning}
+          {t.hero.titleHindi}
+          {t.hero.meaning ? ` — ${t.hero.meaning}` : ""}
         </h2>
         <p className="hero-animate text-xl md:text-2xl font-medium text-[var(--ink-soft)] mb-6 max-w-2xl mx-auto italic">
           {t.hero.subtitle}

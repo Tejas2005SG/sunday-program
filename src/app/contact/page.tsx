@@ -50,7 +50,18 @@ export default function ContactPage() {
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-10">
             <h1 className="text-3xl md:text-4xl font-bold text-[var(--foreground)] mb-4">Contact Us</h1>
-            <p className="text-[var(--ink-soft)]">Have a question? We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+            <p className="text-[var(--ink-soft)] mb-6">Have a question? We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+            
+            <div className="flex flex-col md:flex-row justify-center gap-6 text-[var(--ink-soft)] font-medium mb-4">
+              <div className="flex items-center justify-center gap-2 bg-white dark:bg-neutral-900 px-4 py-2 rounded-full border border-neutral-200 dark:border-neutral-800">
+                <span className="font-bold text-[var(--foreground)]">Manasi Bhor:</span>
+                <a href="tel:8975701626" className="text-[var(--accent)] hover:underline">8975701626</a>
+              </div>
+              <div className="flex items-center justify-center gap-2 bg-white dark:bg-neutral-900 px-4 py-2 rounded-full border border-neutral-200 dark:border-neutral-800">
+                <span className="font-bold text-[var(--foreground)]">Himanshu Kamble:</span>
+                <a href="tel:9619889178" className="text-[var(--accent)] hover:underline">9619889178</a>
+              </div>
+            </div>
           </div>
 
           <div className="bg-white dark:bg-neutral-900 rounded-3xl p-6 md:p-8 shadow-xl border border-neutral-200 dark:border-neutral-800">

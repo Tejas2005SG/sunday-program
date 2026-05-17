@@ -19,10 +19,7 @@ export default function Footer() {
         <p className="text-[var(--ink-soft)] font-medium mb-6">
           &copy; {new Date().getFullYear()} Medha Samvardhan Gurukul. All rights reserved.
         </p>
-        <div className="flex gap-4">
-          <a href="/register" className="chip-link text-xs">Register</a>
-          <a href="/admin/login" className="chip-link text-xs">Admin Login</a>
-        </div>
+
       </div>
     </footer>
   );

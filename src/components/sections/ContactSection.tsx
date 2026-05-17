@@ -20,7 +20,16 @@ export default function ContactSection({ t }: ContactSectionProps) {
               <span className="font-semibold text-[var(--ink-soft)] text-lg">{t.contact.limited}</span>
             </div>
 
-            <br />
+            <div className="flex flex-col md:flex-row justify-center gap-8 text-[var(--ink-soft)] font-medium mb-10 text-lg">
+              <div className="flex items-center justify-center gap-2">
+                <span className="font-bold text-[var(--foreground)]">Manasi Bhor:</span>
+                <a href="tel:8975701626" className="text-[var(--accent)] hover:underline">8975701626</a>
+              </div>
+              <div className="flex items-center justify-center gap-2">
+                <span className="font-bold text-[var(--foreground)]">Himanshu Kamble:</span>
+                <a href="tel:9619889178" className="text-[var(--accent)] hover:underline">9619889178</a>
+              </div>
+            </div>
 
             <a href="/register" className="contact-cta primary-button text-lg px-10 py-4 shadow-2xl inline-flex items-center hover:-translate-y-1 transition-transform">
               <Phone className="w-5 h-5 mr-3" />

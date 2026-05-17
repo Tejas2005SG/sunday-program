@@ -24,6 +24,7 @@ export default function AdminLoginPage() {
       const res = await signIn("credentials", {
         email: form.email,
         password: form.password,
+        callbackUrl: "/admin/dashboard",
         redirect: false,
       });
 
@@ -33,8 +34,7 @@ export default function AdminLoginPage() {
       }
 
       toast.success("Login successful");
-      router.push("/admin/dashboard");
-      router.refresh();
+      router.replace(res?.url || "/admin/dashboard");
     } catch {
       toast.error("Something went wrong");
     } finally {
