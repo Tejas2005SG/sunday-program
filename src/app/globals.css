@@ -6,45 +6,47 @@
 
 :root { 
   /* Our Custom Theme Colors restored from Shadcn overwrite */
-  --background: #fdfdff;
-  --foreground: #201810;
+  --background: #ffffff;
+  --foreground: #1e293b;
   --surface: #ffffff;
-  --surface-muted: #f5ecde;
-  --border: #dccab2;
-  --ink-soft: #60503f;
-  --accent: #b05f2f;
-  --accent-strong: #874518;
-  --accent-soft: #f7e8d4;
+  --surface-muted: #f1f5f9;
+  --border: #e2e8f0;
+  --ink-soft: #475569;
+  --accent: #319795;
+  --accent-strong: #234e52;
+  --accent-soft: #e6fffa;
+  --accent-orange: #f59e0b;
+  --accent-orange-strong: #d97706;
 
   /* Shadcn UI Variables mapped to our theme */
   --card: #ffffff;
-  --card-foreground: #201810;
-  --popover: #fdfdff;
-  --popover-foreground: #201810;
-  --primary: #b05f2f;
+  --card-foreground: #1e293b;
+  --popover: #ffffff;
+  --popover-foreground: #1e293b;
+  --primary: #319795;
   --primary-foreground: #ffffff;
-  --secondary: #f7e8d4;
-  --secondary-foreground: #874518;
-  --muted: #f5ecde;
-  --muted-foreground: #60503f;
-  --accent-foreground: #201810;
+  --secondary: #e6fffa;
+  --secondary-foreground: #234e52;
+  --muted: #f1f5f9;
+  --muted-foreground: #475569;
+  --accent-foreground: #1e293b;
   --destructive: oklch(0.577 0.245 27.325);
-  --input: #dccab2;
-  --ring: #874518;
+  --input: #e2e8f0;
+  --ring: #319795;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
   --radius: 0.625rem;
-  --sidebar: #fdfdff;
-  --sidebar-foreground: #201810;
-  --sidebar-primary: #b05f2f;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #1e293b;
+  --sidebar-primary: #319795;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #f7e8d4;
-  --sidebar-accent-foreground: #874518;
-  --sidebar-border: #dccab2;
-  --sidebar-ring: #874518;
+  --sidebar-accent: #e6fffa;
+  --sidebar-accent-foreground: #234e52;
+  --sidebar-border: #e2e8f0;
+  --sidebar-ring: #319795;
 }
 
 @theme inline {
@@ -57,6 +59,8 @@
   --color-accent: var(--accent);
   --color-accent-strong: var(--accent-strong);
   --color-accent-soft: var(--accent-soft);
+  --color-accent-orange: var(--accent-orange);
+  --color-accent-orange-strong: var(--accent-orange-strong);
   --font-sans: var(--font-sans);
   --font-script: var(--font-devanagari);
   --font-heading: var(--font-sans);

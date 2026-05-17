@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Noto_Sans_Devanagari, Outfit, Geist } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import Providers from "@/components/Providers";
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
@@ -17,8 +18,8 @@ const notoSansDevanagari = Noto_Sans_Devanagari({
 
 export const metadata: Metadata = {
   title: {
-    default: "Atmonnati Gurukula | Sunday School for Youth",
-    template: "%s | Atmonnati Gurukula",
+    default: "Medhasamvardhan Gurukul | Sunday School for Youth",
+    template: "%s | Medhasamvardhan Gurukul",
   },
   description:
     "A 1-year Sunday School program by Gaurang Dham for students of standards 8 to 10, focused on character, confidence, culture, and spiritual wisdom.",
@@ -37,8 +38,7 @@ export const metadata: Metadata = {
     type: "website",
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Atmonnati Gurukula | Sunday School for Youth",
+    title: "Medhasamvardhan Gurukul | Sunday School for Youth",
     description:
       "Value-based youth education program at Gaurang Dham for students of Std. 8th, 9th, and 10th.",
   },
@@ -55,7 +55,7 @@ export default function RootLayout({
       className={cn("h-full", "antialiased", outfit.variable, notoSansDevanagari.variable, "font-sans", geist.variable)}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
