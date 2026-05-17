@@ -55,7 +55,7 @@ export const I18N = {
       title: "Program Details",
       duration: "1 Year",
       day: "Every Sunday",
-      time: "10:00 AM - 12:00 PM",
+      time: "4:00 PM - 6:00 PM",
       venue: "Gaurang Dham"
     },
     gains: {

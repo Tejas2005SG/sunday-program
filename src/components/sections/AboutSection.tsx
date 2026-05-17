@@ -1,5 +1,6 @@
-import { Heart, User, Target, Award, CheckCircle2 } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import { I18N } from "@/lib/i18n";
+import Image from "next/image";
 
 interface AboutSectionProps {
   t: typeof I18N["en"];
@@ -7,41 +8,46 @@ interface AboutSectionProps {
 
 export default function AboutSection({ t }: AboutSectionProps) {
   return (
-    <section id="about" className="py-20 bg-white/40">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    <section id="about" className="py-24 bg-[#F7F4EB] relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          {/* Left Column: Text Content */}
           <div className="order-2 lg:order-1">
-            <div className="about-cards-container grid grid-cols-2 gap-4">
-              <div className="about-card glass-panel p-6 rounded-2xl flex flex-col justify-center items-center text-center hover:-translate-y-2 transition-transform duration-300">
-                <Heart className="w-10 h-10 text-[var(--accent)] mb-3" />
-                <h4 className="font-bold text-[var(--foreground)]">{t.about.points[0]}</h4>
-              </div>
-              <div className="about-card glass-panel p-6 rounded-2xl flex flex-col justify-center items-center text-center translate-y-6 hover:-translate-y-2 transition-transform duration-300">
-                <User className="w-10 h-10 text-[var(--accent)] mb-3" />
-                <h4 className="font-bold text-[var(--foreground)]">{t.about.points[1]}</h4>
-              </div>
-              <div className="about-card glass-panel p-6 rounded-2xl flex flex-col justify-center items-center text-center hover:-translate-y-2 transition-transform duration-300">
-                <Target className="w-10 h-10 text-[var(--accent)] mb-3" />
-                <h4 className="font-bold text-[var(--foreground)]">{t.about.points[2]}</h4>
-              </div>
-              <div className="about-card glass-panel p-6 rounded-2xl flex flex-col justify-center items-center text-center translate-y-6 hover:-translate-y-2 transition-transform duration-300">
-                <Award className="w-10 h-10 text-[var(--accent)] mb-3" />
-                <h4 className="font-bold text-[var(--foreground)]">{t.about.points[3]}</h4>
-              </div>
+            <div className="inline-block px-4 py-1.5 rounded-full bg-[#9B3A30]/10 border border-[#9B3A30]/20 mb-6">
+              <span className="text-[#9B3A30] font-semibold text-sm tracking-widest uppercase">MEDHA SAMVARDHAN</span>
             </div>
-          </div>
-          <div className="order-1 lg:order-2">
-            <h2 className="section-title-anim section-title mb-6 text-3xl md:text-4xl font-bold tracking-tight text-[var(--foreground)]">{t.about.title}</h2>
-            <p className="about-card text-[var(--ink-soft)] text-lg leading-relaxed mb-6">{t.about.p1}</p>
-            <p className="about-card text-[var(--ink-soft)] text-lg leading-relaxed mb-6">{t.about.p2}</p>
-            <ul className="space-y-3">
+            <h2 className="section-title-anim text-4xl md:text-5xl font-bold tracking-tight text-[#122E43] font-serif mb-6 leading-tight">
+              {t.about.title}
+            </h2>
+            <p className="text-gray-700 text-lg leading-relaxed mb-6 font-medium">
+              {t.about.p1}
+            </p>
+            <p className="text-gray-700 text-lg leading-relaxed mb-8">
+              {t.about.p2}
+            </p>
+            <ul className="space-y-4">
               {t.about.points.map((point, i) => (
-                <li key={i} className="about-card flex items-center gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-[var(--accent)] shrink-0" />
-                  <span className="text-[var(--foreground)] font-medium">{point}</span>
+                <li key={i} className="flex items-center gap-4 bg-white/40 p-3 rounded-lg border border-[#D5CDBD] hover:bg-white/60 transition-colors">
+                  <div className="w-8 h-8 rounded-full bg-[#3A4D39]/10 flex items-center justify-center shrink-0">
+                    <CheckCircle2 className="w-5 h-5 text-[#3A4D39]" />
+                  </div>
+                  <span className="text-[#122E43] font-bold font-serif text-lg">{point}</span>
                 </li>
               ))}
             </ul>
+          </div>
+
+          {/* Right Column: Image Collage */}
+          <div className="order-1 lg:order-2 relative flex justify-center items-center">
+            <div className="relative w-full max-w-lg aspect-square drop-shadow-2xl">
+              <Image 
+                src="/about.png" 
+                alt="About Medha Samvardhan"
+                fill
+                className="object-contain hover:scale-105 transition-transform duration-700"
+                priority
+              />
+            </div>
           </div>
         </div>
       </div>

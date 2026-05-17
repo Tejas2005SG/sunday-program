@@ -58,7 +58,7 @@ export default function ContactPage() {
                 <a href="tel:8975701626" className="text-[var(--accent)] hover:underline">8975701626</a>
               </div>
               <div className="flex items-center justify-center gap-2 bg-white dark:bg-neutral-900 px-4 py-2 rounded-full border border-neutral-200 dark:border-neutral-800">
-                <span className="font-bold text-[var(--foreground)]">Himanshu Kamble:</span>
+                <span className="font-bold text-[var(--foreground)]">Dr. Himanshu Kamble:</span>
                 <a href="tel:9619889178" className="text-[var(--accent)] hover:underline">9619889178</a>
               </div>
             </div>

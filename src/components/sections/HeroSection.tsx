@@ -1,59 +1,156 @@
-import { ArrowRight, Sparkles, BookOpen } from "lucide-react";
+"use client";
+
+import { useRef } from "react";
+import { ArrowRight, BookOpen, Sparkles, Calendar, Users, ShieldAlert } from "lucide-react";
 import { I18N } from "@/lib/i18n";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
 interface HeroSectionProps {
   t: typeof I18N["en"];
 }
 
 export default function HeroSection({ t }: HeroSectionProps) {
-  return (
-    <section className="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden px-4" id="home">
-      <div className="absolute top-0 inset-x-0 h-[1000px] w-full bg-gradient-to-b from-[var(--accent-soft)] via-transparent to-[var(--background)] opacity-40 pointer-events-none z-0"></div>
+  const container = useRef<HTMLDivElement>(null);
 
-      <div className="max-w-4xl mx-auto text-center relative z-10">
-        <span className="hero-animate section-kicker mb-4 inline-block px-3 py-1 bg-white/80 border border-[var(--border)] rounded-full backdrop-blur-sm">
+  useGSAP(() => {
+    const tl = gsap.timeline();
+
+    tl.fromTo(
+      ".hero-kicker",
+      { y: 20, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" }
+    );
+    
+    tl.fromTo(
+      ".hero-title",
+      { y: 30, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" },
+      "-=0.6"
+    );
+
+    tl.fromTo(
+      ".hero-subtitle",
+      { y: 20, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" },
+      "-=0.6"
+    );
+
+    tl.fromTo(
+      ".hero-banner",
+      { scale: 0.9, opacity: 0 },
+      { scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.5)" },
+      "-=0.4"
+    );
+
+    tl.fromTo(
+      ".hero-buttons",
+      { y: 20, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" },
+      "-=0.4"
+    );
+
+    tl.fromTo(
+      ".hero-stats-item",
+      { y: 20, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.5, stagger: 0.1, ease: "power2.out" },
+      "-=0.2"
+    );
+  }, { scope: container });
+
+  return (
+    <section 
+      ref={container} 
+      className="relative pt-32 pb-20 overflow-hidden px-4 min-h-screen flex flex-col justify-between items-center bg-cover bg-center bg-no-repeat" 
+      id="home"
+      style={{ backgroundImage: "url('/hero.png')" }}
+    >
+      <div className="max-w-5xl w-full mx-auto text-center relative z-10 flex flex-col items-center flex-grow justify-start pt-10">
+        
+        {/* Top Kicker */}
+        <span className="hero-kicker inline-block px-6 py-2 rounded-full border border-[#D5CDBD] text-[#9B3A30] uppercase tracking-widest text-[11px] sm:text-xs font-semibold mb-6 bg-[#F7F4EB]/80 backdrop-blur-sm">
           {t.hero.kicker}
         </span>
-        <h1 className="hero-animate text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight text-[var(--foreground)] mb-3 leading-tight break-words">
-          {t.hero.title}
-        </h1>
-        <h2 className="hero-animate text-xl sm:text-2xl md:text-3xl text-[var(--accent-strong)] font-script mb-6">
-          {t.hero.titleHindi}
-          {t.hero.meaning ? ` — ${t.hero.meaning}` : ""}
-        </h2>
-        <p className="hero-animate text-xl md:text-2xl font-medium text-[var(--ink-soft)] mb-6 max-w-2xl mx-auto italic">
-          {t.hero.subtitle}
-        </p>
 
-        <div className="hero-animate flex flex-wrap justify-center gap-4 mb-20">
-          <a href="/register" className="primary-button group">
-            {t.hero.ctaMain}
-            <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-          </a>
-          <a href="#modules" className="secondary-button">
-            {t.hero.ctaSec}
-          </a>
+        {/* Main Title */}
+        <h1 className="hero-title text-[#122E43] font-serif text-5xl sm:text-6xl md:text-[5rem] font-bold leading-[1.1] mb-4 max-w-4xl tracking-tight">
+          Medha Samvardhan<br />Gurukul
+        </h1>
+
+        {/* Subtitle */}
+        <h2 className="hero-subtitle text-[#9B3A30] font-serif text-2xl sm:text-3xl md:text-[2rem] mb-2 tracking-widest">
+          {t.hero.subtitle}
+        </h2>
+
+        {/* Hindi Sanskrit Title */}
+        <h3 className="hero-subtitle text-[#9B3A30] font-serif text-2xl sm:text-3xl font-medium mb-8">
+          {t.hero.titleHindi}
+        </h3>
+
+        {/* Tagline Banner */}
+        <div className="hero-banner relative z-20 mb-10">
+          <div 
+            className="inline-flex items-center gap-3 px-8 py-3.5 rounded-full shadow-lg text-white font-medium text-sm sm:text-base tracking-wider"
+            style={{ backgroundColor: "#3A4D39", border: "1px solid #4D614B" }}
+          >
+            <Sparkles className="w-4 h-4 text-[#D8DFCC]" />
+            {t.hero.tagline}
+            <Sparkles className="w-4 h-4 text-[#D8DFCC]" />
+          </div>
         </div>
 
-        {/* Premium Quote Grid */}
-        <div className="hero-animate relative max-w-4xl mx-auto mt-4 px-2 w-full">
-          <div className="absolute inset-0 bg-gradient-to-r from-[var(--accent-soft)] to-[var(--surface-muted)] rounded-3xl transform rotate-1 scale-105 opacity-60 blur-lg -z-10 transition-transform duration-700 hover:rotate-2"></div>
-          <div className="glass-panel rounded-3xl p-8 md:p-12 border border-[var(--border)] relative bg-white/70 shadow-2xl backdrop-blur-xl transition-all duration-500 hover:shadow-[0_20px_40px_-15px_rgba(135,69,24,0.15)] w-full">
-            <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[var(--accent-strong)] to-[var(--accent)] text-white px-6 py-2.5 rounded-full shadow-lg flex items-center gap-2.5 border border-white/20 w-max max-w-[90%]">
-              <Sparkles className="w-4 h-4 text-[var(--accent-soft)] animate-pulse shrink-0" />
-              <h3 className="font-bold text-sm md:text-base font-script tracking-wide truncate">{t.hero.tagline}</h3>
-            </div>
+        {/* Buttons */}
+        <div className="hero-buttons flex flex-wrap justify-center gap-5">
+          <a 
+            href="/register" 
+            className="group px-8 py-3.5 rounded-full text-white font-medium flex items-center gap-2 shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+            style={{ background: "linear-gradient(to right, #B56D39, #8C4618)" }}
+          >
+            {t.hero.ctaMain}
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </a>
+          <a 
+            href="#modules" 
+            className="px-8 py-3.5 rounded-full font-medium flex items-center gap-2 transition-all hover:bg-[#F0EBE0]/80 bg-[#F7F4EB]/60 backdrop-blur-sm"
+            style={{ border: "1px solid #C2B29D", color: "#4A3B2C" }}
+          >
+            {t.hero.ctaSec}
+            <ArrowRight className="w-4 h-4" />
+          </a>
+        </div>
+      </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-x-12 md:gap-y-8 text-left mt-6">
-              {t.quotes.slice(0, 4).map((q, i) => (
-                <div key={i} className="hero-quote flex items-start gap-4 group p-4 rounded-2xl hover:bg-white/80 transition-all duration-300 hover:shadow-sm border border-transparent hover:border-[var(--border)]/50">
-                  <div className="bg-[var(--surface-muted)] p-2.5 rounded-xl group-hover:bg-[var(--accent)] group-hover:-rotate-3 group-hover:scale-110 transition-all duration-300 shrink-0 shadow-inner">
-                    <BookOpen className="w-5 h-5 text-[var(--accent-strong)] group-hover:text-white transition-colors" />
-                  </div>
-                  <p className="text-[var(--ink-soft)] text-sm md:text-[15px] font-medium leading-relaxed group-hover:text-[var(--foreground)] transition-colors mt-0.5">{q}</p>
-                </div>
-              ))}
+      {/* Bottom Stats Grid */}
+      <div className="w-full max-w-4xl relative pb-8 px-4 sm:px-10 z-10 mt-auto">
+        {/* Horizontal Divider */}
+        <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-[#122E43]/30 to-transparent relative mb-8"></div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center relative z-10">
+          <div className="hero-stats-item flex flex-col items-center gap-3">
+            <div className="p-3 rounded-full bg-[#122E43]/10 text-[#122E43]">
+              <Calendar className="w-6 h-6" />
             </div>
+            <p className="font-serif font-bold text-[#122E43] text-xl uppercase tracking-wider">
+              10 Days
+            </p>
+          </div>
+          
+          <div className="hero-stats-item flex flex-col items-center gap-3">
+            <div className="p-3 rounded-full bg-[#122E43]/10 text-[#122E43]">
+              <Users className="w-6 h-6" />
+            </div>
+            <p className="font-serif font-bold text-[#122E43] text-xl uppercase tracking-wider">
+              9 to 15 Years
+            </p>
+          </div>
+          
+          <div className="hero-stats-item flex flex-col items-center gap-3">
+            <div className="p-3 rounded-full bg-[#122E43]/10 text-[#122E43]">
+              <ShieldAlert className="w-6 h-6" />
+            </div>
+            <p className="font-serif font-bold text-[#122E43] text-xl uppercase tracking-wider">
+              Limited Seats
+            </p>
           </div>
         </div>
       </div>
