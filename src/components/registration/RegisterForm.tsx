@@ -52,8 +52,13 @@ export default function RegisterForm() {
       const data = await res.json();
 
       if (!res.ok) {
-        // If already registered, redirect to payment with existing userId
+        // If already registered, check payment status
         if (res.status === 409 && data.userId) {
+          if (data.paymentStatus === "paid") {
+            toast.success("You are already registered and have completed payment!");
+            router.push(`/success`);
+            return;
+          }
           toast.error(data.error);
           router.push(`/payment?userId=${data.userId}`);
           return;
@@ -86,10 +91,9 @@ export default function RegisterForm() {
   };
 
   const inputClass = (field: string) =>
-    `w-full rounded-xl border bg-white px-4 py-3 pl-11 text-sm outline-none transition-all duration-200 placeholder:text-neutral-400 focus:ring-2 dark:bg-neutral-900 dark:text-white dark:border-neutral-700 ${
-      errors[field]
-        ? "border-red-400 focus:ring-red-200 dark:focus:ring-red-900"
-        : "border-neutral-200 focus:border-accent focus:ring-accent/20 dark:border-neutral-700 dark:focus:border-accent"
+    `w-full rounded-xl border bg-white px-4 py-3 pl-11 text-sm outline-none transition-all duration-200 placeholder:text-neutral-400 focus:ring-2 dark:bg-neutral-900 dark:text-white dark:border-neutral-700 ${errors[field]
+      ? "border-red-400 focus:ring-red-200 dark:focus:ring-red-900"
+      : "border-neutral-200 focus:border-[#9B3A30] focus:ring-[#9B3A30]/20 dark:border-neutral-700 dark:focus:border-[#9B3A30]"
     }`;
 
   const programs = [
@@ -219,7 +223,7 @@ export default function RegisterForm() {
             onChange={handleChange}
             placeholder="Any additional information..."
             rows={3}
-            className="w-full rounded-xl border border-neutral-200 bg-white px-4 py-3 pl-11 text-sm outline-none transition-all duration-200 placeholder:text-neutral-400 focus:border-accent focus:ring-2 focus:ring-accent/20 dark:bg-neutral-900 dark:text-white dark:border-neutral-700 dark:focus:border-accent"
+            className="w-full rounded-xl border border-neutral-200 bg-white px-4 py-3 pl-11 text-sm outline-none transition-all duration-200 placeholder:text-neutral-400 focus:border-[#9B3A30] focus:ring-2 focus:ring-[#9B3A30]/20 dark:bg-neutral-900 dark:text-white dark:border-neutral-700 dark:focus:border-[#9B3A30]"
           />
         </div>
       </div>
@@ -228,7 +232,7 @@ export default function RegisterForm() {
       <button
         type="submit"
         disabled={loading}
-        className="flex w-full items-center justify-center gap-2 rounded-xl bg-accent py-3.5 text-sm font-semibold text-white transition-all duration-200 hover:bg-accent-strong disabled:cursor-not-allowed disabled:opacity-60"
+        className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#9B3A30] py-3.5 text-sm font-semibold text-white transition-all duration-200 hover:bg-[#9B3A30]/90 disabled:cursor-not-allowed disabled:opacity-60"
       >
         {loading ? (
           <>

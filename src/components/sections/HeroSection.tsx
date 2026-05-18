@@ -131,7 +131,7 @@ export default function HeroSection({ t }: HeroSectionProps) {
               <Calendar className="w-6 h-6" />
             </div>
             <p className="font-serif font-bold text-[#122E43] text-xl uppercase tracking-wider">
-              10 Days
+              1 Year
             </p>
           </div>
           

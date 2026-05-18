@@ -28,7 +28,7 @@ export default function Navbar({ lang, setLang, scrolled }: NavbarProps) {
               priority
             />
             <span className="font-bold text-xl md:text-2xl text-[var(--foreground)] tracking-tight">
-              {lang === "en" ? "Medha Samvardhan" : "मेधासंवर्धन"} <span className="text-[var(--accent)]">Gurukul</span>
+              {lang === "en" ? "Medha Samvardhan" : "मेधासंवर्धन"} <span className="text-[#9B3A30]">Gurukul</span>
             </span>
           </a>
 

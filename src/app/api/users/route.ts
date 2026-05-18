@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import connectDB from "@/lib/mongodb";
 import User from "@/models/User";
+import { logAuditAction } from "@/lib/auditLog";
 
 /**
  * GET /api/users
@@ -91,7 +92,7 @@ export async function GET(req: NextRequest) {
 export async function DELETE(req: NextRequest) {
   try {
     const session = await getServerSession(authOptions);
-    if (!session) {
+    if (!session?.user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
@@ -111,6 +112,20 @@ export async function DELETE(req: NextRequest) {
     if (!user) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
+
+    await logAuditAction(
+      "user_delete",
+      (session.user as { id?: string }).id || "unknown",
+      session.user.email || "unknown",
+      id,
+      "user",
+      { 
+        deletedUserName: user.name,
+        deletedUserEmail: user.email,
+        deletedUserProgram: user.program,
+        paymentStatus: user.paymentStatus
+      }
+    );
 
     return NextResponse.json({ message: "User deleted successfully" });
   } catch (error: unknown) {

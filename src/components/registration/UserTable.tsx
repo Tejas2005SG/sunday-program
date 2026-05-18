@@ -8,6 +8,7 @@ import {
   MoreHorizontal,
   ChevronLeft,
   ChevronRight,
+  Eye,
 } from "lucide-react";
 import StatusBadge from "./StatusBadge";
 import toast from "react-hot-toast";
@@ -19,6 +20,7 @@ interface UserData {
   phone: string;
   program: string;
   transactionId?: string;
+  screenshotUrl?: string;
   paymentStatus: "pending" | "paid";
   createdAt: string;
 }
@@ -141,6 +143,9 @@ export default function UserTable({
                 Transaction ID
               </th>
               <th className="whitespace-nowrap px-4 py-3 font-semibold text-foreground">
+                Screenshot
+              </th>
+              <th className="whitespace-nowrap px-4 py-3 font-semibold text-foreground">
                 Status
               </th>
               <th className="hidden whitespace-nowrap px-4 py-3 font-semibold text-foreground md:table-cell">
@@ -166,8 +171,10 @@ export default function UserTable({
                 <td className="hidden whitespace-nowrap px-4 py-3 text-muted-foreground md:table-cell">
                   {user.phone}
                 </td>
-                <td className="hidden max-w-[150px] truncate whitespace-nowrap px-4 py-3 text-muted-foreground lg:table-cell">
-                  {user.program}
+                <td className="hidden px-4 py-3 lg:table-cell">
+                  <span className="inline-block max-w-[350px] truncate align-bottom text-muted-foreground" title={user.program}>
+                    {user.program}
+                  </span>
                 </td>
                 <td className="hidden whitespace-nowrap px-4 py-3 sm:table-cell">
                   {user.transactionId ? (
@@ -176,6 +183,21 @@ export default function UserTable({
                     </code>
                   ) : (
                     <span className="text-xs text-neutral-400">--</span>
+                  )}
+                </td>
+                <td className="whitespace-nowrap px-4 py-3">
+                  {user.screenshotUrl ? (
+                    <a
+                      href={user.screenshotUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 rounded-lg bg-purple-100 px-3 py-1.5 text-xs font-semibold text-purple-600 transition-colors hover:bg-purple-200"
+                    >
+                      <Eye size={12} />
+                      View
+                    </a>
+                  ) : (
+                    <span className="text-xs text-neutral-400">No Image</span>
                   )}
                 </td>
                 <td className="whitespace-nowrap px-4 py-3">
@@ -211,6 +233,18 @@ export default function UserTable({
                             Actions for {user.name.split(" ")[0]}
                           </h3>
                           <div className="flex flex-col gap-2">
+                            {user.screenshotUrl && (
+                              <a
+                                href={user.screenshotUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#9B3A30]/10 py-3 text-sm font-semibold text-[#9B3A30] transition-colors hover:bg-[#9B3A30]/20"
+                              >
+                                <Eye size={18} />
+                                View Screenshot
+                              </a>
+                            )}
+
                             {user.paymentStatus === "pending" ? (
                               <button
                                 onClick={() => updateStatus(user._id, "paid")}

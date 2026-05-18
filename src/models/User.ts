@@ -7,6 +7,7 @@ export interface IUser extends Document {
   program: string;
   notes?: string;
   transactionId?: string;
+  screenshotUrl?: string;
   paymentStatus: "pending" | "paid";
   paymentSubmittedAt?: Date;
   paidAt?: Date;
@@ -49,6 +50,10 @@ const UserSchema = new Schema<IUser>(
       type: String,
       trim: true,
     },
+    screenshotUrl: {
+      type: String,
+      trim: true,
+    },
     paymentStatus: {
       type: String,
       enum: ["pending", "paid"],
@@ -66,7 +71,11 @@ const UserSchema = new Schema<IUser>(
   }
 );
 
-// Prevent model recompilation in development
+// Prevent model recompilation in development, but clear cache if fields are missing
+if (mongoose.models.User && !mongoose.models.User.schema.paths.screenshotUrl) {
+  delete mongoose.models.User;
+}
+
 const User: Model<IUser> =
   mongoose.models.User || mongoose.model<IUser>("User", UserSchema);
 

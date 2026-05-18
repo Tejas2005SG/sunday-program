@@ -60,7 +60,14 @@ export const I18N = {
     },
     gains: {
       title: "What Students Will Gain",
-      items: ["Strong Values & Discipline", "Confidence in Speaking", "Better Focus & Decision Making", "Emotional Balance", "Clear Vision for Future", "Spiritual Development"]
+      items: [
+        { title: "Strong Values & Discipline", desc: "Building a foundation of good habits and unwavering integrity." },
+        { title: "Confidence in Speaking", desc: "Developing clear articulation and overcoming stage fright." },
+        { title: "Better Focus & Decision Making", desc: "Enhancing concentration and the ability to make right choices." },
+        { title: "Emotional Balance", desc: "Learning to handle stress, peer pressure, and anger effectively." },
+        { title: "Clear Vision for Future", desc: "Setting meaningful goals and planning a purpose-driven life." },
+        { title: "Spiritual Development", desc: "Cultivating inner peace, compassion, and a service-oriented mindset." }
+      ]
     },
     features: {
       title: "Special Features",
@@ -82,6 +89,21 @@ export const I18N = {
       title: "Registration Open Now!",
       limited: "Limited Seats Available",
       btn: "Contact Us Today"
+    },
+    contactPage: {
+      title: "Contact Us",
+      subtitle: "Have a question? We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
+      nameLabel: "Full Name",
+      namePlaceholder: "John Doe",
+      emailLabel: "Email Address",
+      emailPlaceholder: "john@example.com",
+      phoneLabel: "Phone Number",
+      phonePlaceholder: "Your phone number",
+      messageLabel: "Message",
+      messagePlaceholder: "How can we help you?",
+      submitBtn: "Send Message",
+      submittingBtn: "Sending...",
+      successMsg: "Message sent successfully!",
     },
     visionMission: {
       kicker: "About Us",
@@ -159,7 +181,14 @@ export const I18N = {
     },
     gains: {
       title: "छात्र क्या हासिल करेंगे",
-      items: ["मजबूत मूल्य और अनुशासन", "बोलने में आत्मविश्वास", "बेहतर एकाग्रता और निर्णय क्षमता", "भावनात्मक संतुलन", "भविष्य के लिए स्पष्ट दृष्टिकोण", "आध्यात्मिक विकास"]
+      items: [
+        { title: "मजबूत मूल्य और अनुशासन", desc: "अच्छी आदतों और अटूट सत्यनिष्ठा की नींव बनाना।" },
+        { title: "बोलने में आत्मविश्वास", desc: "स्पष्ट अभिव्यक्ति विकसित करना और मंच के डर को दूर करना।" },
+        { title: "बेहतर एकाग्रता और निर्णय क्षमता", desc: "एकाग्रता और सही विकल्प चुनने की क्षमता बढ़ाना।" },
+        { title: "भावनात्मक संतुलन", desc: "तनाव, सहकर्मी दबाव और क्रोध को प्रभावी ढंग से संभालना सीखना।" },
+        { title: "भविष्य के लिए स्पष्ट दृष्टिकोण", desc: "सार्थक लक्ष्य निर्धारित करना और उद्देश्य-संचालित जीवन की योजना बनाना।" },
+        { title: "आध्यात्मिक विकास", desc: "आंतरिक शांति, करुणा और सेवा-उन्मुख मानसिकता विकसित करना।" }
+      ]
     },
     features: {
       title: "विशिष्ट विशेषताएं",
@@ -181,6 +210,21 @@ export const I18N = {
       title: "पंजीकरण अभी खुला है!",
       limited: "सीमित सीटें उपलब्ध हैं",
       btn: "आज ही संपर्क करें"
+    },
+    contactPage: {
+      title: "हमसे संपर्क करें",
+      subtitle: "कोई प्रश्न है? हमें आपसे सुनना अच्छा लगेगा। हमें संदेश भेजें और हम जल्द से जल्द जवाब देंगे।",
+      nameLabel: "पूरा नाम",
+      namePlaceholder: "जॉन डो",
+      emailLabel: "ईमेल पता",
+      emailPlaceholder: "john@example.com",
+      phoneLabel: "फ़ोन नंबर",
+      phonePlaceholder: "आपका फ़ोन नंबर",
+      messageLabel: "संदेश",
+      messagePlaceholder: "हम आपकी क्या मदद कर सकते हैं?",
+      submitBtn: "संदेश भेजें",
+      submittingBtn: "भेजा जा रहा है...",
+      successMsg: "संदेश सफलतापूर्वक भेजा गया!",
     },
     visionMission: {
       kicker: "हमारे बारे में",
@@ -258,7 +302,14 @@ export const I18N = {
     },
     gains: {
       title: "विद्यार्थ्यांना काय मिळेल?",
-      items: ["मूल्ये आणि शिस्त", "बोलण्यात आत्मविश्वास", "उत्तम एकाग्रता आणि निर्णय क्षमता", "भावनिक संतुलन", "भविष्यासाठी स्पष्ट दृष्टिकोन", "आध्यात्मिक विकास"]
+      items: [
+        { title: "मूल्ये आणि शिस्त", desc: "चांगल्या सवयी आणि अढळ प्रामाणिकपणाचा पाया उभारणे." },
+        { title: "बोलण्यात आत्मविश्वास", desc: "स्पष्ट संवाद कौशल्य विकसित करणे आणि स्टेजची भीती दूर करणे." },
+        { title: "उत्तम एकाग्रता आणि निर्णय क्षमता", desc: "एकाग्रता वाढवणे आणि योग्य निर्णय घेण्याची क्षमता सुधारणे." },
+        { title: "भावनिक संतुलन", desc: "तणाव, मित्रांचा दबाव आणि राग प्रभावीपणे हाताळायला शिकणे." },
+        { title: "भविष्यासाठी स्पष्ट दृष्टिकोन", desc: "अर्थपूर्ण ध्येये निश्चित करणे आणि उद्देशपूर्ण जीवनाचे नियोजन करणे." },
+        { title: "आध्यात्मिक विकास", desc: "आंतरिक शांतता, करुणा आणि सेवाभावी वृत्ती जोपासणे." }
+      ]
     },
     features: {
       title: "विशेष वैशिष्ट्ये",
@@ -280,6 +331,21 @@ export const I18N = {
       title: "नोंदणी सुरू झाली आहे!",
       limited: "मर्यादित जागा शिल्लक आहेत",
       btn: "आजच संपर्क साधा"
+    },
+    contactPage: {
+      title: "आमच्याशी संपर्क साधा",
+      subtitle: "काही प्रश्न आहे का? आम्हाला तुमच्याकडून ऐकायला आवडेल. आम्हाला संदेश पाठवा आणि आम्ही लवकरात लवकर प्रतिसाद देऊ.",
+      nameLabel: "पूर्ण नाव",
+      namePlaceholder: "जॉन डो",
+      emailLabel: "ईमेल पत्ता",
+      emailPlaceholder: "john@example.com",
+      phoneLabel: "फोन नंबर",
+      phonePlaceholder: "तुमचा फोन नंबर",
+      messageLabel: "संदेश",
+      messagePlaceholder: "आम्ही तुम्हाला कशी मदत करू शकतो?",
+      submitBtn: "संदेश पाठवा",
+      submittingBtn: "पाठवत आहे...",
+      successMsg: "संदेश यशस्वीरित्या पाठवला गेला!",
     },
     visionMission: {
       kicker: "आमच्याबद्दल",

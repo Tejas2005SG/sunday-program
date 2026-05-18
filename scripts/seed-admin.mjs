@@ -39,8 +39,8 @@ async function seed() {
 
     const Admin = mongoose.models.Admin || mongoose.model("Admin", AdminSchema);
 
-    const email = "tbhangale9@gmail.com";
-    const password = "Tejas@2005";
+    const email = "sample";
+    const password = "sample";
 
     // Check if admin already exists
     const existing = await Admin.findOne({ email });

@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import connectDB from "@/lib/mongodb";
 import User from "@/models/User";
+import { logAuditAction } from "@/lib/auditLog";
 
 /**
  * PUT /api/pay/[id]
@@ -14,7 +15,7 @@ export async function PUT(
 ) {
   try {
     const session = await getServerSession(authOptions);
-    if (!session) {
+    if (!session?.user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
@@ -35,7 +36,6 @@ export async function PUT(
       paymentStatus,
     };
 
-    // Set paidAt timestamp when marking as paid
     if (paymentStatus === "paid") {
       updateData.paidAt = new Date();
     } else {
@@ -47,6 +47,20 @@ export async function PUT(
     if (!user) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
+
+    await logAuditAction(
+      "payment_status_update",
+      (session.user as { id?: string }).id || "unknown",
+      session.user.email || "unknown",
+      user._id.toString(),
+      "user",
+      { 
+        previousStatus: user.paymentStatus, 
+        newStatus: paymentStatus,
+        userName: user.name,
+        userEmail: user.email 
+      }
+    );
 
     return NextResponse.json({
       message: `Payment status updated to ${paymentStatus}`,

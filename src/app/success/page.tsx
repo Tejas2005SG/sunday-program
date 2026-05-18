@@ -1,51 +1,59 @@
 import Link from "next/link";
 import { CheckCircle, ArrowLeft } from "lucide-react";
-import SiteNavbar from "@/components/registration/Navbar";
 
-export const metadata = {
-  title: "Payment Submitted | Medha Samvardhan Gurukul",
-  description: "Your payment details have been submitted successfully",
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Payment Submitted",
+  description: "Your payment details have been submitted successfully to Medha Samvardhan Gurukul.",
+  robots: {
+    index: false, // Don't index success page
+    follow: false,
+  },
 };
 
 export default function SuccessPage() {
   return (
     <>
-      <SiteNavbar />
-      <main className="min-h-screen bg-gradient-to-b from-neutral-50 to-white dark:from-neutral-950 dark:to-neutral-900">
-        <div className="mx-auto flex max-w-lg flex-col items-center px-4 py-16 text-center sm:py-24">
+      <main className="min-h-screen bg-[#F7F4EB]/30 flex flex-col justify-center items-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        {/* Decorative background elements */}
+        <div className="absolute top-0 right-0 w-64 h-64 bg-[#3A4D39]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#9B3A30]/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
+
+        <div className="mx-auto flex max-w-lg w-full flex-col items-center bg-white p-8 sm:p-12 rounded-3xl border border-[#D5CDBD]/60 shadow-xl text-center relative z-10">
           {/* Success icon */}
-          <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30">
-            <CheckCircle size={40} className="text-green-600 dark:text-green-400" />
+          <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-[#9B3A30]/10">
+            <CheckCircle size={44} className="text-[#9B3A30]" />
           </div>
 
           {/* Heading */}
-          <h1 className="text-2xl font-bold text-foreground sm:text-3xl">
+          <h1 className="text-3xl font-bold font-serif text-[#122E43] tracking-tight">
             Payment Submitted!
           </h1>
 
           {/* Message */}
-          <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
+          <p className="mt-4 text-sm leading-relaxed text-[#5C6B73] font-medium sm:text-base">
             Your payment details have been submitted successfully. Our team will
             verify your transaction and confirm your registration.
           </p>
 
           {/* Info card */}
-          <div className="mt-8 w-full rounded-2xl border border-blue-200 bg-blue-50 p-5 text-left dark:border-blue-900 dark:bg-blue-950/30">
-            <h3 className="text-sm font-semibold text-blue-800 dark:text-blue-300">
+          <div className="mt-8 w-full rounded-2xl border border-[#D5CDBD]/60 bg-[#F7F4EB] p-6 text-left">
+            <h3 className="text-base font-bold font-serif text-[#9B3A30]">
               What happens next?
             </h3>
-            <ul className="mt-2 space-y-1.5 text-sm text-blue-700 dark:text-blue-400/90">
-              <li className="flex items-start gap-2">
-                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-400" />
-                Admin will verify your transaction ID
+            <ul className="mt-3.5 space-y-3 text-sm text-[#122E43]">
+              <li className="flex items-start gap-2.5 font-medium">
+                <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#9B3A30]" />
+                Admin will verify your transaction ID and screenshot
               </li>
-              <li className="flex items-start gap-2">
-                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-400" />
+              <li className="flex items-start gap-2.5 font-medium">
+                <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#9B3A30]" />
                 Your payment status will be updated to &quot;Paid&quot;
               </li>
-              <li className="flex items-start gap-2">
-                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-400" />
-                You will receive confirmation details
+              <li className="flex items-start gap-2.5 font-medium">
+                <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#9B3A30]" />
+                You will receive confirmation details shortly
               </li>
             </ul>
           </div>
@@ -53,7 +61,7 @@ export default function SuccessPage() {
           {/* Back link */}
           <Link
             href="/"
-            className="mt-8 inline-flex items-center gap-2 rounded-xl bg-accent px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-accent-strong"
+            className="mt-8 inline-flex items-center gap-2 rounded-xl bg-[#9B3A30] hover:bg-[#9B3A30]/90 px-8 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:scale-102 hover:shadow-md"
           >
             <ArrowLeft size={16} />
             Back to Home

@@ -3,6 +3,8 @@ import mongoose, { Schema, Document, Model } from "mongoose";
 export interface IAdmin extends Document {
   email: string;
   password: string;
+  failedLoginAttempts?: number;
+  lockUntil?: Date;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -19,6 +21,14 @@ const AdminSchema = new Schema<IAdmin>(
     password: {
       type: String,
       required: [true, "Password is required"],
+      minlength: [12, "Password must be at least 12 characters"],
+    },
+    failedLoginAttempts: {
+      type: Number,
+      default: 0,
+    },
+    lockUntil: {
+      type: Date,
     },
   },
   {
@@ -26,7 +36,8 @@ const AdminSchema = new Schema<IAdmin>(
   }
 );
 
-// Prevent model recompilation in development
+AdminSchema.index({ email: 1 });
+
 const Admin: Model<IAdmin> =
   mongoose.models.Admin || mongoose.model<IAdmin>("Admin", AdminSchema);
 

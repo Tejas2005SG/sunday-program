@@ -22,6 +22,17 @@ export default function LandingPage() {
   const mainRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    const stored = window.localStorage.getItem("lang") as Language | null;
+    if (stored && I18N[stored]) {
+      setLang(stored);
+    }
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem("lang", lang);
+  }, [lang]);
+
+  useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };

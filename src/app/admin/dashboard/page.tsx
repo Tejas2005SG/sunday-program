@@ -32,6 +32,7 @@ interface UserData {
   phone: string;
   program: string;
   transactionId?: string;
+  screenshotUrl?: string;
   paymentStatus: "pending" | "paid";
   createdAt: string;
 }

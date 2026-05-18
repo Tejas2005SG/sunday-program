@@ -6,15 +6,31 @@ import User from "@/models/User";
  * POST /api/register
  * Register a new user for a program/event.
  */
+const MAX_NAME_LENGTH = 100;
+const MAX_NOTES_LENGTH = 500;
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const { name, email, phone, program, notes } = body;
 
-    // Validation
     if (!name || !email || !phone || !program) {
       return NextResponse.json(
         { error: "Name, email, phone, and program are required" },
+        { status: 400 }
+      );
+    }
+
+    if (name.trim().length > MAX_NAME_LENGTH) {
+      return NextResponse.json(
+        { error: `Name must be ${MAX_NAME_LENGTH} characters or less` },
+        { status: 400 }
+      );
+    }
+
+    if (notes && notes.trim().length > MAX_NOTES_LENGTH) {
+      return NextResponse.json(
+        { error: `Notes must be ${MAX_NOTES_LENGTH} characters or less` },
         { status: 400 }
       );
     }
@@ -41,9 +57,13 @@ export async function POST(req: NextRequest) {
 
     // Check if user with same email already registered for same program
     const existingUser = await User.findOne({ email, program });
-    if (existingUser) {
+    if (existingUser && existingUser.paymentStatus === "paid") {
       return NextResponse.json(
-        { error: "You have already registered for this program", userId: existingUser._id },
+        { 
+          error: "You are already registered for this program",
+          userId: existingUser._id,
+          paymentStatus: existingUser.paymentStatus,
+        },
         { status: 409 }
       );
     }
