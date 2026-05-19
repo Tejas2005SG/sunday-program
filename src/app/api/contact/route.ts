@@ -1,43 +1,36 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 import connectDB from "@/lib/mongodb";
 import { Contact } from "@/models/Contact";
+import { validateContact } from "@/lib/validation";
+import { getRateLimitKey } from "@/lib/request";
+import { limitRequest } from "@/lib/rateLimit";
 
-const EMAIL_REGEX = /^\S+@\S+\.\S+$/;
-const PHONE_REGEX = /^[0-9]{10}$/;
-const MAX_MESSAGE_LENGTH = 1000;
-const MAX_NAME_LENGTH = 100;
-
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   try {
+    const rateKey = getRateLimitKey(req, "contact");
+    const rate = limitRequest(rateKey);
+    if (!rate.allowed) {
+      return NextResponse.json(
+        { error: "Too many requests. Please try again later." },
+        { status: 429 }
+      );
+    }
+
     await connectDB();
     const body = await req.json();
-    const { name, email, phone, message } = body;
-
-    if (!name || !email || !phone || !message) {
-      return NextResponse.json({ error: "All fields are required" }, { status: 400 });
+    const parsed = validateContact(body);
+    if (!parsed.ok || !parsed.data) {
+      return NextResponse.json({ error: parsed.error }, { status: 400 });
     }
+    const { name, email, phone, message } = parsed.data;
 
-    if (name.trim().length > MAX_NAME_LENGTH) {
-      return NextResponse.json({ error: `Name must be ${MAX_NAME_LENGTH} characters or less` }, { status: 400 });
-    }
-
-    if (!EMAIL_REGEX.test(email)) {
-      return NextResponse.json({ error: "Please provide a valid email address" }, { status: 400 });
-    }
-
-    if (!PHONE_REGEX.test(phone)) {
-      return NextResponse.json({ error: "Please provide a valid 10-digit phone number" }, { status: 400 });
-    }
-
-    if (message.trim().length > MAX_MESSAGE_LENGTH) {
-      return NextResponse.json({ error: `Message must be ${MAX_MESSAGE_LENGTH} characters or less` }, { status: 400 });
-    }
-
-    const contact = await Contact.create({ 
-      name: name.trim(), 
-      email: email.trim().toLowerCase(), 
-      phone: phone.trim(), 
-      message: message.trim() 
+    const contact = await Contact.create({
+      name,
+      email,
+      phone,
+      message,
     });
     return NextResponse.json({ success: true, contact }, { status: 201 });
   } catch (error) {
@@ -46,8 +39,12 @@ export async function POST(req: Request) {
   }
 }
 
-export async function GET(req: Request) {
+export async function GET(req: NextRequest) {
   try {
+    const session = await getServerSession(authOptions);
+    if (!session) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
     await connectDB();
     const contacts = await Contact.find().sort({ createdAt: -1 });
     return NextResponse.json({ contacts });
@@ -55,3 +52,5 @@ export async function GET(req: Request) {
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }
+
+export const dynamic = "force-dynamic";

@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import connectDB from "@/lib/mongodb";
 import User from "@/models/User";
+import mongoose from "mongoose";
 import { logAuditAction } from "@/lib/auditLog";
 
 /**
@@ -30,6 +31,10 @@ export async function PUT(
       );
     }
 
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return NextResponse.json({ error: "Invalid user ID" }, { status: 400 });
+    }
+
     await connectDB();
 
     const updateData: Record<string, unknown> = {
@@ -42,9 +47,16 @@ export async function PUT(
       updateData.paidAt = null;
     }
 
-    const user = await User.findByIdAndUpdate(id, updateData, { new: true });
-
+    const user = await User.findById(id);
     if (!user) {
+      return NextResponse.json({ error: "User not found" }, { status: 404 });
+    }
+
+    const previousStatus = user.paymentStatus;
+
+    const updated = await User.findByIdAndUpdate(id, updateData, { new: true });
+
+    if (!updated) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
@@ -55,16 +67,16 @@ export async function PUT(
       user._id.toString(),
       "user",
       { 
-        previousStatus: user.paymentStatus, 
+        previousStatus,
         newStatus: paymentStatus,
         userName: user.name,
-        userEmail: user.email 
+        userEmail: user.email
       }
     );
 
     return NextResponse.json({
       message: `Payment status updated to ${paymentStatus}`,
-      user,
+      user: updated,
     });
   } catch (error: unknown) {
     console.error("Update payment error:", error);

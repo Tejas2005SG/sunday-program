@@ -35,13 +35,18 @@ export default function RegisterForm() {
     if (!form.program.trim()) errs.program = "Program name is required";
     if (!form.address.trim()) errs.address = "Address is required";
     if (form.address.trim().length > 500) {
-      toast.error("Address must be 500 characters or less");
+      errs.address = "Address must be 500 characters or less";
+    }
+    if (form.notes.trim().length > 500) {
+      errs.notes = "Notes must be 500 characters or less";
+    }
+
+    if (Object.keys(errs).length > 0) {
       setErrors(errs);
       return false;
     }
-
-    setErrors(errs);
-    return Object.keys(errs).length === 0;
+    setErrors({});
+    return true;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -74,7 +79,8 @@ export default function RegisterForm() {
       }
 
       toast.success("Registration successful!");
-      router.push(`/payment?userId=${data.userId}`);
+      const tokenParam = data.paymentToken ? `&token=${data.paymentToken}` : "";
+      router.push(`/payment?userId=${data.userId}${tokenParam}`);
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : "Something went wrong";
       toast.error(message);
@@ -248,15 +254,18 @@ export default function RegisterForm() {
             size={16}
             className="absolute left-3.5 top-3.5 text-neutral-400"
           />
-          <textarea
-            name="notes"
-            value={form.notes}
-            onChange={handleChange}
-            placeholder="Any additional information..."
-            rows={3}
-            className="w-full rounded-xl border border-neutral-200 bg-white px-4 py-3 pl-11 text-sm outline-none transition-all duration-200 placeholder:text-neutral-400 focus:border-[#9B3A30] focus:ring-2 focus:ring-[#9B3A30]/20 dark:bg-neutral-900 dark:text-white dark:border-neutral-700 dark:focus:border-[#9B3A30]"
-          />
-        </div>
+            <textarea
+              name="notes"
+              value={form.notes}
+              onChange={handleChange}
+              placeholder="Any additional information..."
+              rows={3}
+              className="w-full rounded-xl border border-neutral-200 bg-white px-4 py-3 pl-11 text-sm outline-none transition-all duration-200 placeholder:text-neutral-400 focus:border-[#9B3A30] focus:ring-2 focus:ring-[#9B3A30]/20 dark:bg-neutral-900 dark:text-white dark:border-neutral-700 dark:focus:border-[#9B3A30]"
+            />
+            {errors.notes && (
+              <p className="mt-1 text-xs text-red-500">{errors.notes}</p>
+            )}
+          </div>
       </div>
 
       {/* Submit */}

@@ -21,8 +21,9 @@ export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url);
     const search = searchParams.get("search") || "";
     const status = searchParams.get("status") || "all";
-    const page = parseInt(searchParams.get("page") || "1");
-    const limit = parseInt(searchParams.get("limit") || "20");
+    const page = Math.max(parseInt(searchParams.get("page") || "1"), 1);
+    const requestedLimit = Math.max(parseInt(searchParams.get("limit") || "20"), 1);
+    const limit = Math.min(requestedLimit, 100);
     const skip = (page - 1) * limit;
 
     // Build query
@@ -30,12 +31,13 @@ export async function GET(req: NextRequest) {
     const query: any = {};
 
     // Search filter
-    if (search) {
+    const trimmedSearch = search.trim();
+    if (trimmedSearch && trimmedSearch.length <= 100) {
       query.$or = [
-        { name: { $regex: search, $options: "i" } },
-        { email: { $regex: search, $options: "i" } },
-        { phone: { $regex: search, $options: "i" } },
-        { transactionId: { $regex: search, $options: "i" } },
+        { name: { $regex: trimmedSearch, $options: "i" } },
+        { email: { $regex: trimmedSearch, $options: "i" } },
+        { phone: { $regex: trimmedSearch, $options: "i" } },
+        { transactionId: { $regex: trimmedSearch, $options: "i" } },
       ];
     }
 
@@ -99,9 +101,9 @@ export async function DELETE(req: NextRequest) {
     const { searchParams } = new URL(req.url);
     const id = searchParams.get("id");
 
-    if (!id) {
+    if (!id || !id.match(/^[0-9a-fA-F]{24}$/)) {
       return NextResponse.json(
-        { error: "User ID is required" },
+        { error: "Invalid user ID" },
         { status: 400 }
       );
     }

@@ -12,6 +12,7 @@ export interface IUser extends Document {
   paymentStatus: "pending" | "paid";
   paymentSubmittedAt?: Date;
   paidAt?: Date;
+  paymentToken?: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -68,6 +69,11 @@ const UserSchema = new Schema<IUser>(
     },
     paymentSubmittedAt: {
       type: Date,
+    },
+    paymentToken: {
+      type: String,
+      index: true,
+      select: false,
     },
     paidAt: {
       type: Date,

@@ -10,7 +10,9 @@ const MAX_ATTEMPTS = 5;
 const WINDOW_MS = 15 * 60 * 1000; // 15 minutes
 const LOCKOUT_MS = 15 * 60 * 1000; // 15 minutes lockout
 
-export function checkRateLimit(identifier: string): { allowed: boolean; remainingAttempts: number; lockedUntil?: number } {
+export type RateLimitResult = { allowed: boolean; remainingAttempts: number; lockedUntil?: number };
+
+export function checkRateLimit(identifier: string): RateLimitResult {
     const now = Date.now();
     const entry = rateLimitStore.get(identifier);
 
@@ -55,6 +57,10 @@ export function checkRateLimit(identifier: string): { allowed: boolean; remainin
 
 export function clearRateLimit(identifier: string): void {
     rateLimitStore.delete(identifier);
+}
+
+export function limitRequest(identifier: string): RateLimitResult {
+    return checkRateLimit(identifier);
 }
 
 setInterval(() => {

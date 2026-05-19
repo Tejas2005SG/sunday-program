@@ -9,6 +9,7 @@ import Image from "next/image";
 function PaymentContent() {
   const searchParams = useSearchParams();
   const userId = searchParams.get("userId");
+  const token = searchParams.get("token");
 
   if (!userId) {
     return (
@@ -44,7 +45,7 @@ function PaymentContent() {
         </p>
       </div>
 
-      <PaymentQR userId={userId} />
+      <PaymentQR userId={userId} token={token} />
     </>
   );
 }

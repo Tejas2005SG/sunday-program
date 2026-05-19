@@ -8,11 +8,12 @@ import Image from "next/image";
 
 interface PaymentQRProps {
   userId: string;
+  token: string | null;
 }
 
 const AMOUNT = "2000";
 
-export default function PaymentQR({ userId }: PaymentQRProps) {
+export default function PaymentQR({ userId, token }: PaymentQRProps) {
   const router = useRouter();
   const [transactionId, setTransactionId] = useState("");
   const [screenshot, setScreenshot] = useState<File | null>(null);
@@ -26,6 +27,11 @@ export default function PaymentQR({ userId }: PaymentQRProps) {
       return;
     }
 
+    if (!token) {
+      toast.error("Payment session expired. Please register again.");
+      return;
+    }
+
     if (!screenshot) {
       toast.error("Please upload a payment screenshot");
       return;
@@ -36,6 +42,9 @@ export default function PaymentQR({ userId }: PaymentQRProps) {
       const formData = new FormData();
       formData.append("userId", userId);
       formData.append("transactionId", transactionId.trim());
+      if (token) {
+        formData.append("paymentToken", token);
+      }
       formData.append("screenshot", screenshot);
 
       const res = await fetch("/api/payment", {

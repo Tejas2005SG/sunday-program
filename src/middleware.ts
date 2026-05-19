@@ -8,5 +8,5 @@ export default withAuth({
 
 // Protect only admin dashboard routes
 export const config = {
-  matcher: ["/admin/dashboard/:path*"],
+  matcher: ["/admin/dashboard/:path*", "/admin/contacts/:path*"],
 };
