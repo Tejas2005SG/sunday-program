@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { User, Mail, Phone, BookOpen, FileText, Loader2 } from "lucide-react";
+import { User, Mail, Phone, BookOpen, FileText, Loader2, MapPin } from "lucide-react";
 import toast from "react-hot-toast";
 
 export default function RegisterForm() {
@@ -13,6 +13,7 @@ export default function RegisterForm() {
     email: "",
     phone: "",
     program: "",
+    address: "",
     notes: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -32,6 +33,12 @@ export default function RegisterForm() {
       errs.phone = "Enter a valid 10-digit phone number";
     }
     if (!form.program.trim()) errs.program = "Program name is required";
+    if (!form.address.trim()) errs.address = "Address is required";
+    if (form.address.trim().length > 500) {
+      toast.error("Address must be 500 characters or less");
+      setErrors(errs);
+      return false;
+    }
 
     setErrors(errs);
     return Object.keys(errs).length === 0;
@@ -204,6 +211,30 @@ export default function RegisterForm() {
         </div>
         {errors.program && (
           <p className="mt-1 text-xs text-red-500">{errors.program}</p>
+        )}
+      </div>
+
+      {/* Address */}
+      <div>
+        <label className="mb-1.5 block text-sm font-medium text-foreground">
+          Address <span className="text-red-500">*</span>
+        </label>
+        <div className="relative">
+          <MapPin
+            size={16}
+            className="absolute left-3.5 top-3.5 text-neutral-400"
+          />
+          <textarea
+            name="address"
+            value={form.address}
+            onChange={handleChange}
+            placeholder="Enter your full address"
+            rows={3}
+            className={inputClass("address")}
+          />
+        </div>
+        {errors.address && (
+          <p className="mt-1 text-xs text-red-500">{errors.address}</p>
         )}
       </div>
 

@@ -30,7 +30,12 @@ export const I18N = {
         "Personality Development",
         "Emotional Strength",
         "Spiritual Wisdom"
-      ]
+      ],
+      ourInspiration: {
+        label: "OUR INSPIRATION",
+        desc: "Our program is inspired by the timeless teachings and example of His Divine Grace A.C. Bhaktivedanta Swami Prabhupada, who dedicated his life to spreading wisdom, devotion, and values worldwide.",
+        btn: "Read about our inspiration"
+      }
     },
     modules: {
       title: "Program Highlights (4 Powerful Modules)",
@@ -120,7 +125,16 @@ export const I18N = {
       "विद्यया अमृतमश्नुते – Through knowledge, one attains immortality",
       "विद्या ददाति विनयम् – Knowledge gives humility",
       "ज्ञानं परमं बलम् – Knowledge is the greatest strength"
-    ]
+    ],
+    inspirationPage: {
+      backToHome: "Back to Home",
+      label: "OUR INSPIRATION",
+      title: "His Divine Grace A.C. Bhaktivedanta Swami Prabhupada",
+      p1: "Our program is deeply inspired by the timeless teachings and exemplary life of His Divine Grace A.C. Bhaktivedanta Swami Prabhupada. He dedicated his entire life to spreading the profound wisdom, pure devotion, and core values of India's spiritual heritage worldwide.",
+      p2: "Born in 1896 in Calcutta, India, Srila Prabhupada demonstrated a lifelong commitment to preserving and sharing the ancient Vedic knowledge. In 1965, at the advanced age of 69, he traveled to the United States on a cargo ship, carrying only a few rupees and a trunk of his translated books. Over the next twelve years, despite his advanced age, he circled the globe fourteen times on lecture tours, bringing the teachings of Lord Krishna to millions.",
+      p3: "Through his profound translations and commentaries on texts like the Bhagavad-gita and Srimad-Bhagavatam, he provided a clear, accessible path to spiritual realization for the modern age. His teachings emphasize the importance of character building, self-discipline, and dedicated service to others.",
+      p4: "The Medha Samvardhan program incorporates these fundamental principles. We strive to instill the values of humility, integrity, and spiritual awareness in the youth, guiding them to lead balanced, purposeful, and fulfilling lives, just as Srila Prabhupada envisioned."
+    }
   },
   hi: {
     nav: {
@@ -151,7 +165,12 @@ export const I18N = {
         "व्यक्तित्व विकास",
         "भावनात्मक शक्ति",
         "आध्यात्मिक ज्ञान"
-      ]
+      ],
+      ourInspiration: {
+        label: "हमारी प्रेरणा",
+        desc: "हमारा कार्यक्रम हिज़ डिवाइन ग्रेस ए.सी. भक्तिवेदांत स्वामी प्रभुपाद की कालजयी शिक्षाओं और उदाहरण से प्रेरित है, जिन्होंने अपना जीवन दुनिया भर में ज्ञान, भक्ति और मूल्यों को फैलाने के लिए समर्पित कर दिया।",
+        btn: "हमारी प्रेरणा के बारे में पढ़ें"
+      }
     },
     modules: {
       title: "कार्यक्रम की मुख्य विशेषताएं (4 शक्तिशाली मॉड्यूल)",
@@ -241,7 +260,16 @@ export const I18N = {
       "विद्यया अमृतमश्नुते – विद्या से अमृत की प्राप्ति होती है",
       "विद्या ददाति विनयम् – विद्या विनय देती है",
       "ज्ञानं परमं बलम् – ज्ञान सबसे बड़ी शक्ति है"
-    ]
+    ],
+    inspirationPage: {
+      backToHome: "होम पर वापस जाएं",
+      label: "हमारी प्रेरणा",
+      title: "हिज़ डिवाइन ग्रेस ए.सी. भक्तिवेदांत स्वामी प्रभुपाद",
+      p1: "हमारा कार्यक्रम हिज़ डिवाइन ग्रेस ए.सी. भक्तिवेदांत स्वामी प्रभुपाद की कालजयी शिक्षाओं और अनुकरणीय जीवन से गहराई से प्रेरित है। उन्होंने अपना पूरा जीवन भारत की आध्यात्मिक विरासत के गहन ज्ञान, शुद्ध भक्ति और मूल मूल्यों को दुनिया भर में फैलाने के लिए समर्पित कर दिया।",
+      p2: "1896 में कलकत्ता, भारत में जन्मे, श्रील प्रभुपाद ने प्राचीन वैदिक ज्ञान को संरक्षित और साझा करने के लिए आजीवन प्रतिबद्धता का प्रदर्शन किया। 1965 में, 69 वर्ष की आयु में, उन्होंने केवल कुछ रुपये और अपनी अनुवादित पुस्तकों का एक ट्रंक लेकर एक मालवाहक जहाज पर संयुक्त राज्य अमेरिका की यात्रा की। अगले बारह वर्षों में, उन्होंने चौदह बार दुनिया की परिक्रमा की, और भगवान कृष्ण की शिक्षाओं को लाखों लोगों तक पहुँचाया।",
+      p3: "भगवद-गीता और श्रीमद्-भागवतम जैसे ग्रंथों पर अपने गहन अनुवादों और टिप्पणियों के माध्यम से, उन्होंने आधुनिक युग के लिए आध्यात्मिक प्राप्ति का एक स्पष्ट, सुलभ मार्ग प्रदान किया। उनकी शिक्षाएं चरित्र निर्माण, आत्म-अनुशासन और दूसरों की समर्पित सेवा के महत्व पर जोर देती हैं।",
+      p4: "मेधा संवर्धन कार्यक्रम इन मूलभूत सिद्धांतों को शामिल करता है। हम युवाओं में विनम्रता, सत्यनिष्ठा और आध्यात्मिक जागरूकता के मूल्यों को स्थापित करने का प्रयास करते हैं, ताकि वे श्रील प्रभुपाद की कल्पना के अनुसार संतुलित, उद्देश्यपूर्ण और पूर्ण जीवन व्यतीत कर सकें।"
+    }
   },
   mr: {
     nav: {
@@ -266,13 +294,18 @@ export const I18N = {
     about: {
       title: "कार्यक्रमाविषयी",
       p1: "आजच्या वेगाने बदलणाऱ्या जगात, विद्यार्थ्यांना ताणतणाव, विचलित मन, एकाग्रतेचा अभाव आणि जीवनातील ध्येयांबाबत संभ्रम यांसारख्या आव्हानांना सामोरे जावे लागते.",
-      p2: "त्यांना योग्य मार्गदर्शन देण्यासाठी, गौरांग धामने १ वर्षाचा संडे स्कूल प्रोग्राम सुरू केला आहे, जो खालील मूल्यांवर केंद्रित action: \"चारित्र्य विकास\",",
+      p2: "त्यांना योग्य मार्गदर्शन देण्यासाठी, गौरांग धामने १ वर्षाचा संडे स्कूल प्रोग्राम सुरू केला आहे, जो खालील मूल्यांवर केंद्रित आहे:",
       points: [
         "चारित्र्य विकास",
         "व्यक्तिमत्व विकास",
         "भावनिक सामर्थ्य",
         "आध्यात्मिक ज्ञान"
-      ]
+      ],
+      ourInspiration: {
+        label: "आमची प्रेरणा",
+        desc: "आमचा कार्यक्रम हिज डिव्हाईन ग्रेस ए.सी. भक्तिवेदांत स्वामी प्रभुपाद यांच्या चिरंतन शिकवणी आणि उदाहरणातून प्रेरित आहे, ज्यांनी आपले जीवन जगभर ज्ञान, भक्ती आणि मूल्ये पसरवण्यासाठी समर्पित केले.",
+        btn: "आमच्या प्रेरणेबद्दल वाचा"
+      }
     },
     modules: {
       title: "कार्यक्रमाची ठळक वैशिष्ट्ये (४ महत्त्वपूर्ण मॉड्यूल्स)",
@@ -362,6 +395,15 @@ export const I18N = {
       "विद्यया अमृतमश्नुते – विद्येने अमृताची प्राप्ती होते",
       "विद्या ददाति विनयम् – विद्या विनय देते",
       "ज्ञानं परमं बलम् – ज्ञान हीच सर्वात मोठी शक्ती आहे"
-    ]
+    ],
+    inspirationPage: {
+      backToHome: "मुख्यपृष्ठावर परत जा",
+      label: "आमची प्रेरणा",
+      title: "हिज डिव्हाईन ग्रेस ए.सी. भक्तिवेदांत स्वामी प्रभुपाद",
+      p1: "आमचा कार्यक्रम हिज डिव्हाईन ग्रेस ए.सी. भक्तिवेदांत स्वामी प्रभुपाद यांच्या चिरंतन शिकवणी आणि आदर्श जीवनातून अत्यंत प्रेरित आहे. त्यांनी आपले संपूर्ण जीवन भारताच्या आध्यात्मिक वारशाचे सखोल ज्ञान, शुद्ध भक्ती आणि मूळ मूल्ये जगभर पसरवण्यासाठी समर्पित केले.",
+      p2: "१८९६ मध्ये कलकत्ता, भारत येथे जन्मलेल्या श्रील प्रभुपादांनी प्राचीन वैदिक ज्ञानाचे जतन आणि वाटप करण्यासाठी आजीवन वचनबद्धता दर्शविली. १९६५ मध्ये, वयाच्या ६९ व्या वर्षी, त्यांनी मालवाहू जहाजातून अमेरिकेचा प्रवास केला. त्यांच्याकडे फक्त काही रुपये आणि त्यांच्या अनुवादित पुस्तकांची एक पेटी होती. पुढील बारा वर्षांत, त्यांनी व्याख्यानांसाठी चौदा वेळा जगभर प्रवास केला आणि भगवान श्रीकृष्णाची शिकवण लाखो लोकांपर्यंत पोहोचवली.",
+      p3: "भगवद्गीता आणि श्रीमद्-भागवतम् यांसारख्या ग्रंथांवरील त्यांच्या सखोल भाषांतरे आणि विवरणांद्वारे, त्यांनी आधुनिक युगासाठी आध्यात्मिक अनुभूतीचा एक स्पष्ट, सुलभ मार्ग प्रदान केला. त्यांची शिकवण चारित्र्य निर्मिती, स्वयं-शिस्त आणि इतरांच्या समर्पित सेवेच्या महत्त्वावर भर देते.",
+      p4: "मेधा संवर्धन कार्यक्रमात या मूलभूत तत्त्वांचा समावेश आहे. श्रील प्रभुपादांनी कल्पिल्याप्रमाणे, तरुणांमध्ये नम्रता, सचोटी आणि आध्यात्मिक जागरूकतेची मूल्ये रुजवून त्यांना संतुलित, उद्देशपूर्ण आणि परिपूर्ण जीवन जगण्यासाठी मार्गदर्शन करण्याचा आमचा प्रयत्न आहे."
+    }
   }
 };

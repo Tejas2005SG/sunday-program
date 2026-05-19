@@ -5,6 +5,7 @@ export interface IUser extends Document {
   email: string;
   phone: string;
   program: string;
+  address: string;
   notes?: string;
   transactionId?: string;
   screenshotUrl?: string;
@@ -40,6 +41,12 @@ const UserSchema = new Schema<IUser>(
       type: String,
       required: [true, "Program name is required"],
       trim: true,
+    },
+    address: {
+      type: String,
+      required: [true, "Address is required"],
+      trim: true,
+      maxlength: [500, "Address cannot exceed 500 characters"],
     },
     notes: {
       type: String,

@@ -31,6 +31,7 @@ interface UserData {
   email: string;
   phone: string;
   program: string;
+  address: string;
   transactionId?: string;
   screenshotUrl?: string;
   paymentStatus: "pending" | "paid";
@@ -101,6 +102,7 @@ export default function AdminDashboardPage() {
           Email: u.email,
           Phone: u.phone,
           Program: u.program,
+          Address: u.address,
           Status: u.paymentStatus,
           "Transaction ID": u.transactionId || "N/A",
           Date: new Date(u.createdAt).toLocaleDateString("en-IN", {
@@ -139,6 +141,7 @@ export default function AdminDashboardPage() {
         u.email,
         u.phone,
         u.program,
+        u.address,
         u.paymentStatus,
         u.transactionId || "--",
         new Date(u.createdAt).toLocaleDateString("en-IN", {
@@ -149,7 +152,7 @@ export default function AdminDashboardPage() {
       ]);
 
       autoTable(doc, {
-        head: [["Name", "Email", "Phone", "Program", "Status", "Transaction ID", "Date"]],
+        head: [["Name", "Email", "Phone", "Program", "Address", "Status", "Transaction ID", "Date"]],
         body: tableData,
         startY: 20,
       });

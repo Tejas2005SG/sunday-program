@@ -19,9 +19,9 @@ export const metadata: Metadata = {
 
 export default function RegisterPage() {
   return (
-    <main className="min-h-screen flex flex-col lg:flex-row bg-white">
+    <main className="min-h-screen flex flex-col lg:flex-row bg-white lg:h-screen lg:overflow-hidden">
       {/* Left Section (Logo & Branding) */}
-      <div className="lg:w-1/2 bg-[#F7F4EB] flex flex-col items-center justify-center p-8 lg:p-16 border-b lg:border-b-0 lg:border-r border-[#D5CDBD] relative overflow-hidden">
+      <div className="lg:w-1/2 bg-[#F7F4EB] flex flex-col items-center justify-center p-8 lg:p-16 border-b lg:border-b-0 lg:border-r border-[#D5CDBD] relative overflow-hidden lg:h-full">
         {/* Subtle background decoration */}
         <div className="absolute top-0 right-0 w-64 h-64 bg-[#3A4D39]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
         <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#9B3A30]/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
@@ -48,7 +48,7 @@ export default function RegisterPage() {
       </div>
 
       {/* Right Section (Form) */}
-      <div className="lg:w-1/2 flex flex-col justify-center px-4 py-12 sm:px-8 lg:px-16 xl:px-24 bg-gradient-to-b from-neutral-50 to-white dark:from-neutral-950 dark:to-neutral-900">
+      <div className="lg:w-1/2 flex flex-col justify-center px-4 py-12 sm:px-8 lg:px-16 xl:px-24 bg-gradient-to-b from-neutral-50 to-white dark:from-neutral-950 dark:to-neutral-900 lg:h-full lg:overflow-y-auto">
         <div className="w-full max-w-lg mx-auto">
           {/* Header */}
           <div className="mb-8 text-center sm:text-left">

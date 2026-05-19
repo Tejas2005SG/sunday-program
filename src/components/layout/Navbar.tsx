@@ -1,5 +1,7 @@
 import { Globe, ChevronDown, Menu, X } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { Language, I18N } from "@/lib/i18n";
 import { useState } from "react";
 
@@ -12,13 +14,31 @@ interface NavbarProps {
 export default function Navbar({ lang, setLang, scrolled }: NavbarProps) {
   const t = I18N[lang];
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const handleHashNav = (section: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+
+    if (pathname !== "/") {
+      router.push(`/#${section}`);
+      return;
+    }
+
+    const target = document.getElementById(section);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    window.history.replaceState(null, "", `/#${section}`);
+  };
 
   return (
     <nav className={`nav-logo fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? "bg-white/90 backdrop-blur-md shadow-sm border-b border-[var(--border)] py-3" : "bg-transparent py-5"}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
 
-          <a href="/" className="flex items-center gap-2 group">
+          <Link href="/" className="flex items-center gap-2 group">
             <Image
               src="/logo.png"
               alt="Medha Samvardhan Gurukul Logo"
@@ -30,14 +50,14 @@ export default function Navbar({ lang, setLang, scrolled }: NavbarProps) {
             <span className="font-bold text-xl md:text-2xl text-[var(--foreground)] tracking-tight">
               {lang === "en" ? "Medha Samvardhan" : "मेधासंवर्धन"} <span className="text-[#9B3A30]">Gurukul</span>
             </span>
-          </a>
+          </Link>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">
-            <a href="#about" className="text-sm font-medium text-[var(--ink-soft)] hover:text-[var(--accent-strong)] transition-colors">{t.nav.about}</a>
-            <a href="#modules" className="text-sm font-medium text-[var(--ink-soft)] hover:text-[var(--accent-strong)] transition-colors">{t.nav.modules}</a>
-            <a href="#mentors" className="text-sm font-medium text-[var(--ink-soft)] hover:text-[var(--accent-strong)] transition-colors">{t.nav.mentors}</a>
-            <a href="/contact" className="text-sm font-medium text-[var(--ink-soft)] hover:text-[var(--accent-strong)] transition-colors">{t.nav.contact}</a>
+            <Link href="/#about" onClick={handleHashNav("about")} className="text-sm font-medium text-[var(--ink-soft)] hover:text-[var(--accent-strong)] transition-colors">{t.nav.about}</Link>
+            <Link href="/#modules" onClick={handleHashNav("modules")} className="text-sm font-medium text-[var(--ink-soft)] hover:text-[var(--accent-strong)] transition-colors">{t.nav.modules}</Link>
+            <Link href="/#mentors" onClick={handleHashNav("mentors")} className="text-sm font-medium text-[var(--ink-soft)] hover:text-[var(--accent-strong)] transition-colors">{t.nav.mentors}</Link>
+            <Link href="/contact" className="text-sm font-medium text-[var(--ink-soft)] hover:text-[var(--accent-strong)] transition-colors">{t.nav.contact}</Link>
 
             <div className="relative group">
               <button className="flex items-center gap-2 bg-white/70 border border-[var(--border)] rounded-full px-4 py-2 backdrop-blur-md transition-shadow duration-300 hover:shadow-md hover:border-[var(--border)] focus:outline-none">
@@ -55,7 +75,7 @@ export default function Navbar({ lang, setLang, scrolled }: NavbarProps) {
               </div>
             </div>
 
-            <a href="/register" className="primary-button hidden lg:inline-flex">{t.hero.ctaMain}</a>
+            <Link href="/register" className="primary-button hidden lg:inline-flex">{t.hero.ctaMain}</Link>
           </div>
 
           {/* Mobile Lang & Menu Toggle */}
@@ -86,11 +106,11 @@ export default function Navbar({ lang, setLang, scrolled }: NavbarProps) {
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
         <div className="md:hidden absolute top-full left-0 w-full bg-white/95 backdrop-blur-xl border-b border-[var(--border)] shadow-xl p-4 flex flex-col gap-4 z-50">
-          <a onClick={() => setMobileMenuOpen(false)} href="#about" className="text-base font-medium text-[var(--foreground)] p-2 hover:bg-[var(--surface-muted)] rounded-lg transition-colors">{t.nav.about}</a>
-          <a onClick={() => setMobileMenuOpen(false)} href="#modules" className="text-base font-medium text-[var(--foreground)] p-2 hover:bg-[var(--surface-muted)] rounded-lg transition-colors">{t.nav.modules}</a>
-          <a onClick={() => setMobileMenuOpen(false)} href="#mentors" className="text-base font-medium text-[var(--foreground)] p-2 hover:bg-[var(--surface-muted)] rounded-lg transition-colors">{t.nav.mentors}</a>
-          <a onClick={() => setMobileMenuOpen(false)} href="/contact" className="text-base font-medium text-[var(--foreground)] p-2 hover:bg-[var(--surface-muted)] rounded-lg transition-colors">{t.nav.contact}</a>
-          <a onClick={() => setMobileMenuOpen(false)} href="/register" className="primary-button text-center w-full mt-2 py-3">{t.hero.ctaMain}</a>
+          <Link href="/#about" onClick={handleHashNav("about")} className="text-base font-medium text-[var(--foreground)] p-2 hover:bg-[var(--surface-muted)] rounded-lg transition-colors">{t.nav.about}</Link>
+          <Link href="/#modules" onClick={handleHashNav("modules")} className="text-base font-medium text-[var(--foreground)] p-2 hover:bg-[var(--surface-muted)] rounded-lg transition-colors">{t.nav.modules}</Link>
+          <Link href="/#mentors" onClick={handleHashNav("mentors")} className="text-base font-medium text-[var(--foreground)] p-2 hover:bg-[var(--surface-muted)] rounded-lg transition-colors">{t.nav.mentors}</Link>
+          <Link onClick={() => setMobileMenuOpen(false)} href="/contact" className="text-base font-medium text-[var(--foreground)] p-2 hover:bg-[var(--surface-muted)] rounded-lg transition-colors">{t.nav.contact}</Link>
+          <Link onClick={() => setMobileMenuOpen(false)} href="/register" className="primary-button text-center w-full mt-2 py-3">{t.hero.ctaMain}</Link>
         </div>
       )}
     </nav>

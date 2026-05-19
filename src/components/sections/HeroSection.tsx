@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Link from "next/link";
 import { ArrowRight, BookOpen, Sparkles, Calendar, Users, ShieldAlert } from "lucide-react";
 import { I18N } from "@/lib/i18n";
 import gsap from "gsap";
@@ -101,22 +102,22 @@ export default function HeroSection({ t }: HeroSectionProps) {
 
         {/* Buttons */}
         <div className="hero-buttons flex flex-wrap justify-center gap-5">
-          <a 
+          <Link 
             href="/register" 
             className="group px-8 py-3.5 rounded-full text-white font-medium flex items-center gap-2 shadow-lg transition-all hover:scale-105 hover:shadow-xl"
             style={{ background: "linear-gradient(to right, #B56D39, #8C4618)" }}
           >
             {t.hero.ctaMain}
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </a>
-          <a 
-            href="#modules" 
+          </Link>
+          <Link 
+            href="/#modules" 
             className="px-8 py-3.5 rounded-full font-medium flex items-center gap-2 transition-all hover:bg-[#F0EBE0]/80 bg-[#F7F4EB]/60 backdrop-blur-sm"
             style={{ border: "1px solid #C2B29D", color: "#4A3B2C" }}
           >
             {t.hero.ctaSec}
             <ArrowRight className="w-4 h-4" />
-          </a>
+          </Link>
         </div>
       </div>
 

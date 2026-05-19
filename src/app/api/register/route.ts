@@ -8,15 +8,16 @@ import User from "@/models/User";
  */
 const MAX_NAME_LENGTH = 100;
 const MAX_NOTES_LENGTH = 500;
+const MAX_ADDRESS_LENGTH = 500;
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { name, email, phone, program, notes } = body;
+    const { name, email, phone, program, address, notes } = body;
 
-    if (!name || !email || !phone || !program) {
+    if (!name || !email || !phone || !program || !address) {
       return NextResponse.json(
-        { error: "Name, email, phone, and program are required" },
+        { error: "Name, email, phone, program, and address are required" },
         { status: 400 }
       );
     }
@@ -24,6 +25,13 @@ export async function POST(req: NextRequest) {
     if (name.trim().length > MAX_NAME_LENGTH) {
       return NextResponse.json(
         { error: `Name must be ${MAX_NAME_LENGTH} characters or less` },
+        { status: 400 }
+      );
+    }
+
+    if (address.trim().length > MAX_ADDRESS_LENGTH) {
+      return NextResponse.json(
+        { error: `Address must be ${MAX_ADDRESS_LENGTH} characters or less` },
         { status: 400 }
       );
     }
@@ -73,6 +81,7 @@ export async function POST(req: NextRequest) {
       email: email.trim().toLowerCase(),
       phone: phone.trim(),
       program: program.trim(),
+      address: address.trim(),
       notes: notes?.trim() || "",
       paymentStatus: "pending",
     });

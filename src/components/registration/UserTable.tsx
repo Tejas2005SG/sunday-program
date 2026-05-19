@@ -19,6 +19,7 @@ interface UserData {
   email: string;
   phone: string;
   program: string;
+  address: string;
   transactionId?: string;
   screenshotUrl?: string;
   paymentStatus: "pending" | "paid";
@@ -139,6 +140,9 @@ export default function UserTable({
               <th className="hidden whitespace-nowrap px-4 py-3 font-semibold text-foreground lg:table-cell">
                 Program
               </th>
+              <th className="hidden whitespace-nowrap px-4 py-3 font-semibold text-foreground xl:table-cell">
+                Address
+              </th>
               <th className="hidden whitespace-nowrap px-4 py-3 font-semibold text-foreground sm:table-cell">
                 Transaction ID
               </th>
@@ -174,6 +178,11 @@ export default function UserTable({
                 <td className="hidden px-4 py-3 lg:table-cell">
                   <span className="inline-block max-w-[350px] truncate align-bottom text-muted-foreground" title={user.program}>
                     {user.program}
+                  </span>
+                </td>
+                <td className="hidden px-4 py-3 xl:table-cell">
+                  <span className="inline-block max-w-[380px] truncate align-bottom text-muted-foreground" title={user.address}>
+                    {user.address}
                   </span>
                 </td>
                 <td className="hidden whitespace-nowrap px-4 py-3 sm:table-cell">
